@@ -137,7 +137,7 @@ function rollDice() {
                 return `<span class="dice-face ${color}-dice ${isSuccess ? 'success' : ''}">${roll}</span>`;
             }).join(' ');
 
-            allResults += `<p class="${color}-text">${color.toUpperCase()} (${numDice}): ${diceFaces}</p>`;
+            allResults += `<p class="${color}-text">${color.toUpperCase()} (≥${successThreshold}): ${diceFaces}</p>`;
         }
     });
 

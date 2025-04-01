@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freedom Five Dice Roller</title>
-    <meta name="mobile-web-app-capable" content="yes"> <!-- Updated meta tag -->
+    <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -47,42 +47,45 @@
             </div>
         </div>
         <div class="threshold-section">
-            <label class="green-text">Thr:</label>
-            <select id="greenThreshold" class="threshold-select">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4" selected>4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-            <label class="red-text">Thr:</label>
-            <select id="redThreshold" class="threshold-select">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4" selected>4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-            <label class="blue-text">Thr:</label>
-            <select id="blueThreshold" class="threshold-select">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4" selected>4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-            <label class="yellow-text">Thr:</label>
-            <select id="yellowThreshold" class="threshold-select">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4" selected>4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
+            <h2>Threshold</h2>
+            <div class="threshold-columns">
+                <div class="threshold-column">
+                    <select id="greenThreshold" class="threshold-select green-dice">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <select id="redThreshold" class="threshold-select red-dice">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+                <div class="threshold-column">
+                    <select id="blueThreshold" class="threshold-select blue-dice">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                    <select id="yellowThreshold" class="threshold-select yellow-dice">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4" selected>4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                    </select>
+                </div>
+            </div>
         </div>
         <button onclick="rollDice()">Roll</button>
         <div id="results"></div>

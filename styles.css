@@ -2,7 +2,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 10px;
-    /* Reduced padding */
     background-color: #1a1a1a;
     color: #fff;
 }
@@ -12,40 +11,38 @@ body {
     margin: 0 auto;
     background: #2a2a2a;
     padding: 10px;
-    /* Reduced padding */
     border-radius: 6px;
-    /* Slightly smaller */
     box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
     font-size: 18px;
-    /* Reduced font size */
     margin: 0 0 5px;
-    /* Reduced margin */
+}
+
+h2 {
+    font-size: 16px;
+    /* Slightly smaller than h1 */
+    margin: 0 0 2px;
+    /* Tight spacing */
 }
 
 label {
     display: inline-block;
     margin: 2px 0;
-    /* Reduced margin */
     color: #fff;
     font-size: 14px;
-    /* Smaller font */
 }
 
 button {
     background-color: #4CAF50;
     color: white;
     padding: 4px 8px;
-    /* Reduced padding */
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin: 0 3px;
-    /* Reduced margin */
     font-size: 14px;
-    /* Smaller font */
 }
 
 button:hover {
@@ -54,30 +51,24 @@ button:hover {
 
 #results {
     margin-top: 5px;
-    /* Reduced margin */
     padding: 5px;
-    /* Reduced padding */
     background-color: #3a3a3a;
     border-radius: 4px;
     color: #fff;
     font-size: 12px;
-    /* Smaller font */
 }
 
 .dice-control {
     margin: 2px 0;
-    /* Reduced margin */
     display: flex;
     align-items: center;
     gap: 3px;
-    /* Reduced gap */
     flex-wrap: nowrap;
 }
 
 .dice-control label {
     flex: 0 0 auto;
     margin-right: 5px;
-    /* Reduced margin */
     white-space: nowrap;
 }
 
@@ -90,7 +81,6 @@ button:hover {
     border: 2px solid #ccc;
     border-radius: 6px;
     margin: 2px;
-    /* Reduced margin */
     font-size: 14px;
     font-weight: bold;
     color: #000;
@@ -112,61 +102,58 @@ button:hover {
     background-color: #f1c40f;
 }
 
-/* Highlight successful dice with a white border */
+/* More distinct successful dice */
 .dice-face.success {
-    border: 3px solid #fff;
-    box-shadow: 0 0 4px #fff;
-    /* Optional glow for emphasis */
+    border: 4px solid #FFD700;
+    /* Gold border */
+    box-shadow: 0 0 6px #FFD700;
+    /* Gold glow */
+    transform: scale(1.1);
+    /* Slight enlargement */
 }
 
 .threshold-section {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-    /* Reduced gap */
     margin: 2px 0;
-    /* Reduced margin */
 }
 
-.threshold-section label {
-    flex: 1 1 45%;
+.threshold-columns {
     display: flex;
-    align-items: center;
-    gap: 3px;
-    /* Reduced gap */
-    font-size: 14px;
-    /* Smaller font */
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.threshold-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
 }
 
 .threshold-select {
     padding: 2px;
-    /* Reduced padding */
     font-size: 12px;
-    /* Smaller font */
-    background-color: #3a3a3a;
-    color: #fff;
+    color: #000;
+    /* Black text for contrast */
     border: 1px solid #555;
     border-radius: 4px;
-    width: 40px;
-    /* Reduced width */
+    width: 100%;
+    /* Full width of column */
+    max-width: 40px;
+    /* Keep it compact */
 }
 
 #characterSelect,
 #characterName,
 #saveButton {
     margin: 2px 0;
-    /* Reduced margin */
     padding: 2px;
-    /* Reduced padding */
     width: 100%;
     max-width: 150px;
-    /* Reduced max-width */
     background-color: #3a3a3a;
     color: #fff;
     border: 1px solid #555;
     border-radius: 4px;
     font-size: 14px;
-    /* Smaller font */
 }
 
 .green-text {
@@ -189,28 +176,27 @@ button:hover {
     .container {
         max-width: 350px;
         padding: 8px;
-        /* Even smaller padding */
     }
 
     h1 {
         font-size: 16px;
-        /* Smaller on mobile */
+    }
+
+    h2 {
+        font-size: 14px;
     }
 
     .dice-control {
         gap: 2px;
-        /* Even smaller gap */
     }
 
     .dice-control label {
         margin-right: 3px;
-        /* Even smaller margin */
         font-size: 12px;
     }
 
     button {
         padding: 3px 6px;
-        /* Smaller padding */
         font-size: 12px;
     }
 
@@ -221,22 +207,28 @@ button:hover {
         font-size: 12px;
         border-radius: 5px;
         margin: 1px;
-        /* Even smaller margin */
+    }
+
+    .dice-face.success {
+        border-width: 3px;
+        /* Slightly smaller border on mobile */
+        box-shadow: 0 0 4px #FFD700;
     }
 
     #results {
         font-size: 10px;
-        /* Smaller font */
     }
 
-    .threshold-section label {
-        flex: 1 1 100%;
-        font-size: 12px;
+    .threshold-columns {
+        gap: 3px;
+    }
+
+    .threshold-column {
+        gap: 1px;
     }
 
     .threshold-select {
-        width: 35px;
-        /* Even smaller width */
+        max-width: 35px;
         font-size: 10px;
     }
 
@@ -244,7 +236,6 @@ button:hover {
     #characterName,
     #saveButton {
         max-width: 120px;
-        /* Even smaller max-width */
         font-size: 12px;
     }
 }
