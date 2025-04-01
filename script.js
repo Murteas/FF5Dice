@@ -8,7 +8,6 @@ let diceCounts = {
 
 function populateCharacterDropdown() {
     const select = document.getElementById('characterSelect');
-    loadThresholds();
     select.innerHTML = '<option value="">Select Character or Create New</option><option value="new">New Character</option>';
     for (let character in characterThresholds) {
         if (characterThresholds.hasOwnProperty(character)) { // Ensure valid property
@@ -30,7 +29,6 @@ function loadSelectedCharacter() {
         newCharacterInput.style.display = 'block';
         saveButton.style.display = 'block';
         newCharacterInput.value = '';
-        // Reset thresholds to default
         setDefaultThresholds();
     } else if (characterName) {
         newCharacterInput.style.display = 'none';
@@ -42,7 +40,7 @@ function loadSelectedCharacter() {
             document.getElementById('blueThreshold').value = thresholds.blue.toString();
             document.getElementById('yellowThreshold').value = thresholds.yellow.toString();
         } else {
-            setDefaultThresholds(); // Fallback if no thresholds found
+            setDefaultThresholds();
         }
     }
 }
@@ -84,14 +82,15 @@ function loadThresholds() {
                 }
             }
         } else {
-            characterThresholds = {}; // Start fresh if nothing saved
+            characterThresholds = {};
         }
     } catch (e) {
         console.error('Error loading thresholds:', e);
-        characterThresholds = {}; // Reset on error
-        localStorage.removeItem('characterThresholds'); // Clear corrupted data
+        characterThresholds = {};
+        localStorage.removeItem('characterThresholds');
         alert('Error loading saved characters. Starting fresh.');
     }
+    // Call populateCharacterDropdown only once after loading
     populateCharacterDropdown();
 }
 
@@ -116,7 +115,7 @@ function rollDice() {
         green: 4, red: 4, blue: 4, yellow: 4
     };
 
-    // Update thresholds from current dropdown values in case they changed
+    // Update thresholds from current dropdown values
     thresholds = {
         green: parseInt(document.getElementById('greenThreshold').value),
         red: parseInt(document.getElementById('redThreshold').value),
@@ -154,7 +153,7 @@ function rollDice() {
 
 // Initialize on load
 window.onload = function() {
-    loadThresholds();
+    loadThresholds(); // Single call to initialize everything
     for (let color in diceCounts) {
         document.getElementById(`${color}Count`).textContent = diceCounts[color];
     }
