@@ -60,17 +60,22 @@ button:hover {
 
 .dice-face {
     display: inline-block;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
+    width: 36px;
+    /* Reduced by 40% from 60px */
+    height: 36px;
+    /* Reduced by 40% from 60px */
+    line-height: 36px;
+    /* Reduced by 40% */
     text-align: center;
     border: 2px solid #ccc;
-    border-radius: 10px;
-    margin: 5px;
+    border-radius: 6px;
+    /* Reduced radius for proportion */
+    margin: 3px;
+    /* Reduced margin */
     position: relative;
     overflow: hidden;
-    font-size: 24px;
-    /* Larger font for digits */
+    font-size: 14px;
+    /* Reduced by 40% from 24px */
     font-weight: bold;
     color: #000;
     /* Black text for digits */
@@ -92,8 +97,6 @@ button:hover {
 .yellow-dice {
     background-color: #f1c40f;
 }
-
-/* No pip classes needed anymore since we’re using digits */
 
 .threshold-section {
     display: flex;
@@ -171,10 +174,18 @@ button:hover {
     }
 
     .dice-face {
-        width: 50px;
-        height: 50px;
-        line-height: 50px;
-        font-size: 20px;
+        width: 30px;
+        /* Reduced by 40% from 50px */
+        height: 30px;
+        /* Reduced by 40% from 50px */
+        line-height: 30px;
+        /* Reduced by 40% */
+        font-size: 12px;
+        /* Reduced by 40% from 20px */
+        border-radius: 5px;
+        /* Adjusted for proportion */
+        margin: 2px;
+        /* Reduced margin */
     }
 
     .threshold-section label {
