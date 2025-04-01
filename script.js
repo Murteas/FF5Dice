@@ -102,7 +102,7 @@ function rollDice() {
             const successThreshold = thresholds[color];
             const successes = rolls.filter(roll => roll >= successThreshold).length;
             let diceFaces = rolls.map(roll => {
-                return `<span class="dice-face dice-face-${roll}"></span>`;
+                return `<span class="dice-face ${color}-dice">${roll}</span>`;
             }).join(' ');
 
             allResults += `<p class="${color}-text">${color.toUpperCase()} Dice (${numDice} rolled): ${diceFaces}<br>Successes (≥${successThreshold}): ${successes}</p>`;

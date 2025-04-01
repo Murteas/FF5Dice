@@ -61,138 +61,39 @@ button:hover {
 .dice-face {
     display: inline-block;
     width: 60px;
-    /* Larger width */
     height: 60px;
-    /* Larger height */
     line-height: 60px;
     text-align: center;
-    background-color: #fff;
-    /* White background for contrast */
     border: 2px solid #ccc;
     border-radius: 10px;
     margin: 5px;
     position: relative;
     overflow: hidden;
+    font-size: 24px;
+    /* Larger font for digits */
+    font-weight: bold;
+    color: #000;
+    /* Black text for digits */
 }
 
-.dice-face .pip {
-    display: block;
-    width: 12px;
-    height: 12px;
-    background-color: #000;
-    /* Black pips for contrast */
-    border-radius: 50%;
-    position: absolute;
+/* Color-matched backgrounds for dice */
+.green-dice {
+    background-color: #2ecc71;
 }
 
-/* Dice face patterns (1-6) */
-.dice-face-1 .pip {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.red-dice {
+    background-color: #e74c3c;
 }
 
-.dice-face-2 .pip:nth-child(1) {
-    top: 20%;
-    left: 20%;
+.blue-dice {
+    background-color: #3498db;
 }
 
-.dice-face-2 .pip:nth-child(2) {
-    bottom: 20%;
-    right: 20%;
+.yellow-dice {
+    background-color: #f1c40f;
 }
 
-.dice-face-3 .pip:nth-child(1) {
-    top: 20%;
-    left: 20%;
-}
-
-.dice-face-3 .pip:nth-child(2) {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.dice-face-3 .pip:nth-child(3) {
-    bottom: 20%;
-    right: 20%;
-}
-
-.dice-face-4 .pip:nth-child(1) {
-    top: 20%;
-    left: 20%;
-}
-
-.dice-face-4 .pip:nth-child(2) {
-    top: 20%;
-    right: 20%;
-}
-
-.dice-face-4 .pip:nth-child(3) {
-    bottom: 20%;
-    left: 20%;
-}
-
-.dice-face-4 .pip:nth-child(4) {
-    bottom: 20%;
-    right: 20%;
-}
-
-.dice-face-5 .pip:nth-child(1) {
-    top: 20%;
-    left: 20%;
-}
-
-.dice-face-5 .pip:nth-child(2) {
-    top: 20%;
-    right: 20%;
-}
-
-.dice-face-5 .pip:nth-child(3) {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.dice-face-5 .pip:nth-child(4) {
-    bottom: 20%;
-    left: 20%;
-}
-
-.dice-face-5 .pip:nth-child(5) {
-    bottom: 20%;
-    right: 20%;
-}
-
-.dice-face-6 .pip:nth-child(1) {
-    top: 20%;
-    left: 20%;
-}
-
-.dice-face-6 .pip:nth-child(2) {
-    top: 20%;
-    right: 20%;
-}
-
-.dice-face-6 .pip:nth-child(3) {
-    top: 50%;
-    left: 33%;
-}
-
-.dice-face-6 .pip:nth-child(4) {
-    top: 50%;
-    right: 33%;
-}
-
-.dice-face-6 .pip:nth-child(5) {
-    bottom: 20%;
-    left: 20%;
-}
-
-.dice-face-6 .pip:nth-child(6) {
-    bottom: 20%;
-    right: 20%;
-}
+/* No pip classes needed anymore since we’re using digits */
 
 .threshold-section {
     display: flex;
@@ -273,11 +174,7 @@ button:hover {
         width: 50px;
         height: 50px;
         line-height: 50px;
-    }
-
-    .pip {
-        width: 10px;
-        height: 10px;
+        font-size: 20px;
     }
 
     .threshold-section label {
