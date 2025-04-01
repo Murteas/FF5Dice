@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freedom Five Dice Roller</title>
-    <meta name="apple-mobile-web-app-capable" content="yes"> <!-- Enable PWA on iPhone -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -13,20 +13,44 @@
     <div class="container">
         <h1>Freedom Five Dice Roller</h1>
         <div class="character-section">
-            <input type="text" id="characterName" placeholder="Enter Character Name">
-            <button onclick="saveThresholds()">Save Thresholds</button>
+            <select id="characterSelect" onchange="loadSelectedCharacter()">
+                <option value="">Select Character or Create New</option>
+                <option value="new">New Character</option>
+            </select>
+            <input type="text" id="characterName" placeholder="Enter New Character Name" style="display:none;">
+            <button onclick="saveThresholds()" id="saveButton" style="display:none;">Save Thresholds</button>
         </div>
         <div class="dice-section">
-            <label>Green Dice: <input type="number" id="greenDice" min="0" value="0"></label>
-            <label>Yellow Dice: <input type="number" id="yellowDice" min="0" value="0"></label>
-            <label>Red Dice: <input type="number" id="redDice" min="0" value="0"></label>
-            <label>Blue Dice: <input type="number" id="blueDice" min="0" value="0"></label>
+            <div class="dice-control">
+                <label>Green Dice:</label>
+                <button onclick="changeDice('green', -1)">-</button>
+                <span id="greenCount">0</span>
+                <button onclick="changeDice('green', 1)">+</button>
+            </div>
+            <div class="dice-control">
+                <label>Red Dice:</label>
+                <button onclick="changeDice('red', -1)">-</button>
+                <span id="redCount">0</span>
+                <button onclick="changeDice('red', 1)">+</button>
+            </div>
+            <div class="dice-control">
+                <label>Blue Dice:</label>
+                <button onclick="changeDice('blue', -1)">-</button>
+                <span id="blueCount">0</span>
+                <button onclick="changeDice('blue', 1)">+</button>
+            </div>
+            <div class="dice-control">
+                <label>Yellow Dice:</label>
+                <button onclick="changeDice('yellow', -1)">-</button>
+                <span id="yellowCount">0</span>
+                <button onclick="changeDice('yellow', 1)">+</button>
+            </div>
         </div>
         <div class="threshold-section">
             <label>Green Threshold: <input type="number" id="greenThreshold" min="1" value="4"></label>
-            <label>Yellow Threshold: <input type="number" id="yellowThreshold" min="1" value="4"></label>
             <label>Red Threshold: <input type="number" id="redThreshold" min="1" value="4"></label>
             <label>Blue Threshold: <input type="number" id="blueThreshold" min="1" value="4"></label>
+            <label>Yellow Threshold: <input type="number" id="yellowThreshold" min="1" value="4"></label>
         </div>
         <button onclick="rollDice()">Roll Dice</button>
         <div id="results"></div>
