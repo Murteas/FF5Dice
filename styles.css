@@ -1,7 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 20px;
+    padding: 10px;
+    /* Reduced padding */
     background-color: #1a1a1a;
     color: #fff;
 }
@@ -10,26 +11,41 @@ body {
     max-width: 400px;
     margin: 0 auto;
     background: #2a2a2a;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    /* Reduced padding */
+    border-radius: 6px;
+    /* Slightly smaller */
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 18px;
+    /* Reduced font size */
+    margin: 0 0 5px;
+    /* Reduced margin */
 }
 
 label {
     display: inline-block;
-    margin: 5px 0;
+    margin: 2px 0;
+    /* Reduced margin */
     color: #fff;
+    font-size: 14px;
+    /* Smaller font */
 }
 
 button {
     background-color: #4CAF50;
     color: white;
-    padding: 5px 10px;
+    padding: 4px 8px;
+    /* Reduced padding */
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    margin: 0 5px;
-    font-size: 16px;
+    margin: 0 3px;
+    /* Reduced margin */
+    font-size: 14px;
+    /* Smaller font */
 }
 
 button:hover {
@@ -37,51 +53,49 @@ button:hover {
 }
 
 #results {
-    margin-top: 15px;
-    padding: 10px;
+    margin-top: 5px;
+    /* Reduced margin */
+    padding: 5px;
+    /* Reduced padding */
     background-color: #3a3a3a;
-    border-radius: 5px;
+    border-radius: 4px;
     color: #fff;
+    font-size: 12px;
+    /* Smaller font */
 }
 
 .dice-control {
-    margin: 8px 0;
+    margin: 2px 0;
+    /* Reduced margin */
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
+    /* Reduced gap */
     flex-wrap: nowrap;
 }
 
 .dice-control label {
     flex: 0 0 auto;
-    margin-right: 10px;
+    margin-right: 5px;
+    /* Reduced margin */
     white-space: nowrap;
 }
 
 .dice-face {
     display: inline-block;
     width: 36px;
-    /* Reduced by 40% from 60px */
     height: 36px;
-    /* Reduced by 40% from 60px */
     line-height: 36px;
-    /* Reduced by 40% */
     text-align: center;
     border: 2px solid #ccc;
     border-radius: 6px;
-    /* Reduced radius for proportion */
-    margin: 3px;
+    margin: 2px;
     /* Reduced margin */
-    position: relative;
-    overflow: hidden;
     font-size: 14px;
-    /* Reduced by 40% from 24px */
     font-weight: bold;
     color: #000;
-    /* Black text for digits */
 }
 
-/* Color-matched backgrounds for dice */
 .green-dice {
     background-color: #2ecc71;
 }
@@ -98,41 +112,61 @@ button:hover {
     background-color: #f1c40f;
 }
 
+/* Highlight successful dice with a white border */
+.dice-face.success {
+    border: 3px solid #fff;
+    box-shadow: 0 0 4px #fff;
+    /* Optional glow for emphasis */
+}
+
 .threshold-section {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    margin: 10px 0;
+    gap: 5px;
+    /* Reduced gap */
+    margin: 2px 0;
+    /* Reduced margin */
 }
 
 .threshold-section label {
     flex: 1 1 45%;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 3px;
+    /* Reduced gap */
+    font-size: 14px;
+    /* Smaller font */
 }
 
 .threshold-select {
-    padding: 5px;
-    font-size: 14px;
+    padding: 2px;
+    /* Reduced padding */
+    font-size: 12px;
+    /* Smaller font */
     background-color: #3a3a3a;
     color: #fff;
     border: 1px solid #555;
     border-radius: 4px;
-    width: 60px;
+    width: 40px;
+    /* Reduced width */
 }
 
 #characterSelect,
 #characterName,
 #saveButton {
-    margin: 5px 0;
-    padding: 5px;
+    margin: 2px 0;
+    /* Reduced margin */
+    padding: 2px;
+    /* Reduced padding */
     width: 100%;
-    max-width: 180px;
+    max-width: 150px;
+    /* Reduced max-width */
     background-color: #3a3a3a;
     color: #fff;
     border: 1px solid #555;
     border-radius: 4px;
+    font-size: 14px;
+    /* Smaller font */
 }
 
 .green-text {
@@ -154,53 +188,63 @@ button:hover {
 @media (max-width: 480px) {
     .container {
         max-width: 350px;
-        padding: 10px;
+        padding: 8px;
+        /* Even smaller padding */
+    }
+
+    h1 {
+        font-size: 16px;
+        /* Smaller on mobile */
     }
 
     .dice-control {
-        flex-direction: row;
-        align-items: center;
-        gap: 3px;
+        gap: 2px;
+        /* Even smaller gap */
     }
 
     .dice-control label {
-        margin-right: 5px;
-        font-size: 14px;
+        margin-right: 3px;
+        /* Even smaller margin */
+        font-size: 12px;
     }
 
     button {
-        padding: 4px 8px;
-        font-size: 14px;
+        padding: 3px 6px;
+        /* Smaller padding */
+        font-size: 12px;
     }
 
     .dice-face {
         width: 30px;
-        /* Reduced by 40% from 50px */
         height: 30px;
-        /* Reduced by 40% from 50px */
         line-height: 30px;
-        /* Reduced by 40% */
         font-size: 12px;
-        /* Reduced by 40% from 20px */
         border-radius: 5px;
-        /* Adjusted for proportion */
-        margin: 2px;
-        /* Reduced margin */
+        margin: 1px;
+        /* Even smaller margin */
+    }
+
+    #results {
+        font-size: 10px;
+        /* Smaller font */
     }
 
     .threshold-section label {
         flex: 1 1 100%;
+        font-size: 12px;
     }
 
     .threshold-select {
-        width: 50px;
-        font-size: 12px;
+        width: 35px;
+        /* Even smaller width */
+        font-size: 10px;
     }
 
     #characterSelect,
     #characterName,
     #saveButton {
-        max-width: 150px;
-        font-size: 14px;
+        max-width: 120px;
+        /* Even smaller max-width */
+        font-size: 12px;
     }
 }

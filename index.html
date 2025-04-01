@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Freedom Five Dice Roller</title>
-    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes"> <!-- Updated meta tag -->
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -18,36 +18,36 @@
                 <option value="new">New Character</option>
             </select>
             <input type="text" id="characterName" placeholder="Enter New Character Name" style="display:none;">
-            <button onclick="saveThresholds()" id="saveButton" style="display:none;">Save Thresholds</button>
+            <button onclick="saveThresholds()" id="saveButton" style="display:none;">Save</button>
         </div>
         <div class="dice-section">
             <div class="dice-control">
-                <label class="green-text">Green Dice:</label>
+                <label class="green-text">Green:</label>
                 <button onclick="changeDice('green', -1)">-</button>
                 <span id="greenCount">0</span>
                 <button onclick="changeDice('green', 1)">+</button>
             </div>
             <div class="dice-control">
-                <label class="red-text">Red Dice:</label>
+                <label class="red-text">Red:</label>
                 <button onclick="changeDice('red', -1)">-</button>
                 <span id="redCount">0</span>
                 <button onclick="changeDice('red', 1)">+</button>
             </div>
             <div class="dice-control">
-                <label class="blue-text">Blue Dice:</label>
+                <label class="blue-text">Blue:</label>
                 <button onclick="changeDice('blue', -1)">-</button>
                 <span id="blueCount">0</span>
                 <button onclick="changeDice('blue', 1)">+</button>
             </div>
             <div class="dice-control">
-                <label class="yellow-text">Yellow Dice:</label>
+                <label class="yellow-text">Yellow:</label>
                 <button onclick="changeDice('yellow', -1)">-</button>
                 <span id="yellowCount">0</span>
                 <button onclick="changeDice('yellow', 1)">+</button>
             </div>
         </div>
         <div class="threshold-section">
-            <label class="green-text">Green Threshold:</label>
+            <label class="green-text">Thr:</label>
             <select id="greenThreshold" class="threshold-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -56,7 +56,7 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
-            <label class="red-text">Red Threshold:</label>
+            <label class="red-text">Thr:</label>
             <select id="redThreshold" class="threshold-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -65,7 +65,7 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
-            <label class="blue-text">Blue Threshold:</label>
+            <label class="blue-text">Thr:</label>
             <select id="blueThreshold" class="threshold-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -74,7 +74,7 @@
                 <option value="5">5</option>
                 <option value="6">6</option>
             </select>
-            <label class="yellow-text">Yellow Threshold:</label>
+            <label class="yellow-text">Thr:</label>
             <select id="yellowThreshold" class="threshold-select">
                 <option value="1">1</option>
                 <option value="2">2</option>
@@ -84,7 +84,7 @@
                 <option value="6">6</option>
             </select>
         </div>
-        <button onclick="rollDice()">Roll Dice</button>
+        <button onclick="rollDice()">Roll</button>
         <div id="results"></div>
     </div>
     <script src="script.js"></script>

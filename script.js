@@ -10,7 +10,7 @@ function populateCharacterDropdown() {
     const select = document.getElementById('characterSelect');
     select.innerHTML = '<option value="">Select Character or Create New</option><option value="new">New Character</option>';
     for (let character in characterThresholds) {
-        if (characterThresholds.hasOwnProperty(character)) { // Ensure valid property
+        if (characterThresholds.hasOwnProperty(character)) {
             const option = document.createElement('option');
             option.value = character;
             option.textContent = character;
@@ -69,14 +69,13 @@ function loadThresholds() {
         const saved = localStorage.getItem('characterThresholds');
         if (saved) {
             characterThresholds = JSON.parse(saved);
-            // Validate and clean up any invalid entries
             for (let key in characterThresholds) {
                 if (!characterThresholds[key] || typeof characterThresholds[key] !== 'object') {
                     delete characterThresholds[key];
                 } else {
                     for (let color in characterThresholds[key]) {
                         if (isNaN(characterThresholds[key][color])) {
-                            characterThresholds[key][color] = 4; // Default if invalid
+                            characterThresholds[key][color] = 4;
                         }
                     }
                 }
@@ -90,7 +89,6 @@ function loadThresholds() {
         localStorage.removeItem('characterThresholds');
         alert('Error loading saved characters. Starting fresh.');
     }
-    // Call populateCharacterDropdown only once after loading
     populateCharacterDropdown();
 }
 
@@ -115,7 +113,6 @@ function rollDice() {
         green: 4, red: 4, blue: 4, yellow: 4
     };
 
-    // Update thresholds from current dropdown values
     thresholds = {
         green: parseInt(document.getElementById('greenThreshold').value),
         red: parseInt(document.getElementById('redThreshold').value),
@@ -131,29 +128,28 @@ function rollDice() {
         if (numDice > 0) {
             let rolls = [];
             for (let i = 0; i < numDice; i++) {
-                rolls.push(Math.floor(Math.random() * 6) + 1); // Ensures d6 (1-6)
+                rolls.push(Math.floor(Math.random() * 6) + 1);
             }
 
             const successThreshold = thresholds[color];
-            const successes = rolls.filter(roll => roll >= successThreshold).length;
             let diceFaces = rolls.map(roll => {
-                return `<span class="dice-face ${color}-dice">${roll}</span>`;
+                const isSuccess = roll >= successThreshold;
+                return `<span class="dice-face ${color}-dice ${isSuccess ? 'success' : ''}">${roll}</span>`;
             }).join(' ');
 
-            allResults += `<p class="${color}-text">${color.toUpperCase()} Dice (${numDice} rolled): ${diceFaces}<br>Successes (≥${successThreshold}): ${successes}</p>`;
+            allResults += `<p class="${color}-text">${color.toUpperCase()} (${numDice}): ${diceFaces}</p>`;
         }
     });
 
     if (allResults) {
         resultsDiv.innerHTML = allResults;
     } else {
-        resultsDiv.innerHTML = '<p>No dice selected to roll!</p>';
+        resultsDiv.innerHTML = '<p>No dice to roll</p>';
     }
 }
 
-// Initialize on load
 window.onload = function() {
-    loadThresholds(); // Single call to initialize everything
+    loadThresholds();
     for (let color in diceCounts) {
         document.getElementById(`${color}Count`).textContent = diceCounts[color];
     }
