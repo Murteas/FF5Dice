@@ -23,22 +23,19 @@ function loadSelectedCharacter() {
     const select = document.getElementById('characterSelect');
     const characterName = select.value;
     const newCharacterInput = document.getElementById('characterName');
-    const saveButton = document.getElementById('saveButton');
-    const updateButton = document.getElementById('updateButton');
-    const deleteButton = document.getElementById('deleteButton');
+    const newCharacterButtons = document.getElementById('newCharacterButtons');
+    const editCharacterButtons = document.getElementById('editCharacterButtons');
 
     if (characterName === 'new') {
         newCharacterInput.style.display = 'block';
-        saveButton.style.display = 'block';
-        updateButton.style.display = 'none';
-        deleteButton.style.display = 'none';
+        newCharacterButtons.style.display = 'flex';
+        editCharacterButtons.style.display = 'none';
         newCharacterInput.value = '';
         setDefaultThresholds();
     } else if (characterName) {
         newCharacterInput.style.display = 'none';
-        saveButton.style.display = 'none';
-        updateButton.style.display = 'block';
-        deleteButton.style.display = 'block';
+        newCharacterButtons.style.display = 'none';
+        editCharacterButtons.style.display = 'flex';
         const thresholds = characterThresholds[characterName];
         if (thresholds) {
             document.getElementById('greenThreshold').value = thresholds.green.toString();
@@ -50,9 +47,8 @@ function loadSelectedCharacter() {
         }
     } else {
         newCharacterInput.style.display = 'none';
-        saveButton.style.display = 'none';
-        updateButton.style.display = 'none';
-        deleteButton.style.display = 'none';
+        newCharacterButtons.style.display = 'none';
+        editCharacterButtons.style.display = 'none';
         setDefaultThresholds();
     }
 }
@@ -144,7 +140,7 @@ function setDefaultThresholds() {
 
 function changeDice(color, delta) {
     const newCount = diceCounts[color] + delta;
-    diceCounts[color] = Math.max(0, Math.min(9, newCount)); // Limit to 0-9
+    diceCounts[color] = Math.max(0, Math.min(9, newCount));
     document.getElementById(`${color}Count`).textContent = diceCounts[color];
 }
 

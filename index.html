@@ -18,9 +18,13 @@
                 <option value="new">New Character</option>
             </select>
             <input type="text" id="characterName" placeholder="Enter New Character Name" style="display:none;">
-            <button onclick="saveThresholds()" id="saveButton" style="display:none;">Save</button>
-            <button onclick="updateThresholds()" id="updateButton" style="display:none;">Update</button>
-            <button onclick="deleteCharacter()" id="deleteButton" style="display:none;">Delete</button>
+            <div class="button-group" id="newCharacterButtons" style="display:none;">
+                <button onclick="saveThresholds()" id="saveButton">Save</button>
+            </div>
+            <div class="button-group" id="editCharacterButtons" style="display:none;">
+                <button onclick="updateThresholds()" id="updateButton">Update</button>
+                <button onclick="deleteCharacter()" id="deleteButton">Delete</button>
+            </div>
         </div>
         <div class="dice-section">
             <h2>Dice</h2>
@@ -57,43 +61,39 @@
         </div>
         <div class="threshold-section">
             <h2>Threshold</h2>
-            <div class="threshold-columns">
-                <div class="threshold-column">
-                    <select id="greenThreshold" class="threshold-select green-dice">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4" selected>4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                    <select id="redThreshold" class="threshold-select red-dice">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4" selected>4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
-                <div class="threshold-column">
-                    <select id="blueThreshold" class="threshold-select blue-dice">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4" selected>4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                    <select id="yellowThreshold" class="threshold-select yellow-dice">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4" selected>4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                    </select>
-                </div>
+            <div class="threshold-row">
+                <select id="greenThreshold" class="threshold-select green-dice">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <select id="redThreshold" class="threshold-select red-dice">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <select id="blueThreshold" class="threshold-select blue-dice">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
+                <select id="yellowThreshold" class="threshold-select yellow-dice">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4" selected>4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                </select>
             </div>
         </div>
         <div id="results"></div>

@@ -2,7 +2,6 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    /* Increased from 15px */
     background-color: #1a1a1a;
     color: #fff;
 }
@@ -12,7 +11,6 @@ body {
     margin: 0 auto;
     background: #2a2a2a;
     padding: 20px;
-    /* Increased from 15px */
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
@@ -20,19 +18,16 @@ body {
 h1 {
     font-size: 20px;
     margin: 0 0 15px;
-    /* Increased from 10px */
 }
 
 h2 {
     font-size: 18px;
     margin: 0 0 10px;
-    /* Increased from 5px */
 }
 
 label {
     display: inline-block;
     margin: 5px 0;
-    /* Increased from 3px */
     color: #fff;
     font-size: 16px;
 }
@@ -58,7 +53,6 @@ button:hover {
     padding: 12px;
     font-size: 20px;
     margin-top: 15px;
-    /* Increased from 10px */
 }
 
 #updateButton {
@@ -79,32 +73,39 @@ button:hover {
 
 #results {
     margin-top: 15px;
-    /* Increased from 10px */
     padding: 10px;
-    /* Increased from 8px */
     background-color: #3a3a3a;
     border-radius: 5px;
     color: #fff;
     font-size: 14px;
 }
 
+.character-section {
+    margin-bottom: 15px;
+    /* Increased spacing */
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    /* Space between buttons */
+    margin-top: 5px;
+}
+
 .dice-section {
     margin: 10px 0;
-    /* Increased from 5px */
 }
 
 .dice-columns {
     display: flex;
     justify-content: space-between;
     gap: 15px;
-    /* Increased from 10px */
 }
 
 .dice-column {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* Increased from 5px */
     flex: 1;
 }
 
@@ -112,14 +113,12 @@ button:hover {
     display: flex;
     align-items: center;
     gap: 8px;
-    /* Increased from 5px */
     flex-wrap: nowrap;
 }
 
 .dice-control label {
     flex: 0 0 auto;
     margin-right: 10px;
-    /* Increased from 8px */
     white-space: nowrap;
 }
 
@@ -161,22 +160,13 @@ button:hover {
 
 .threshold-section {
     margin: 10px 0;
-    /* Increased from 5px */
 }
 
-.threshold-columns {
+.threshold-row {
     display: flex;
     justify-content: space-between;
-    gap: 15px;
-    /* Increased from 10px */
-}
-
-.threshold-column {
-    display: flex;
-    flex-direction: column;
     gap: 10px;
-    /* Increased from 5px */
-    flex: 1;
+    /* Space between dropdowns */
 }
 
 .threshold-select {
@@ -185,14 +175,13 @@ button:hover {
     color: #000;
     border: 1px solid #555;
     border-radius: 5px;
-    width: 100%;
-    max-width: 45px;
+    width: 45px;
+    /* Fixed width for consistency */
 }
 
 #characterSelect,
 #characterName {
     margin: 5px 0;
-    /* Increased from 3px */
     padding: 3px;
     width: 100%;
     max-width: 180px;
@@ -223,7 +212,6 @@ button:hover {
     .container {
         max-width: 350px;
         padding: 15px;
-        /* Increased from 10px */
     }
 
     h1 {
@@ -236,12 +224,10 @@ button:hover {
 
     .dice-control {
         gap: 5px;
-        /* Increased from 3px */
     }
 
     .dice-control label {
         margin-right: 8px;
-        /* Increased from 5px */
         font-size: 14px;
     }
 
@@ -254,7 +240,6 @@ button:hover {
         padding: 10px;
         font-size: 18px;
         margin-top: 12px;
-        /* Increased from 10px */
     }
 
     .dice-face {
@@ -274,25 +259,24 @@ button:hover {
     #results {
         font-size: 12px;
         margin-top: 12px;
-        /* Increased from 10px */
         padding: 8px;
-        /* Increased from 6px */
     }
 
-    .dice-columns,
-    .threshold-columns {
+    .dice-columns {
         gap: 10px;
-        /* Increased from 6px */
     }
 
-    .dice-column,
-    .threshold-column {
+    .dice-column {
         gap: 8px;
-        /* Increased from 3px */
+    }
+
+    .threshold-row {
+        gap: 8px;
+        /* Slightly smaller gap on mobile */
     }
 
     .threshold-select {
-        max-width: 40px;
+        width: 40px;
         font-size: 12px;
     }
 
@@ -300,5 +284,10 @@ button:hover {
     #characterName {
         max-width: 150px;
         font-size: 14px;
+    }
+
+    .button-group {
+        gap: 10px;
+        /* Slightly smaller gap on mobile */
     }
 }
