@@ -1,8 +1,8 @@
 body {
     font-family: Arial, sans-serif;
     margin: 0;
-    padding: 15px;
-    /* Increased padding */
+    padding: 20px;
+    /* Increased from 15px */
     background-color: #1a1a1a;
     color: #fff;
 }
@@ -11,49 +11,41 @@ body {
     max-width: 400px;
     margin: 0 auto;
     background: #2a2a2a;
-    padding: 15px;
-    /* Increased padding */
+    padding: 20px;
+    /* Increased from 15px */
     border-radius: 8px;
-    /* Slightly larger */
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
 }
 
 h1 {
     font-size: 20px;
-    /* Slightly larger */
-    margin: 0 0 10px;
-    /* Increased margin */
+    margin: 0 0 15px;
+    /* Increased from 10px */
 }
 
 h2 {
     font-size: 18px;
-    /* Slightly larger */
-    margin: 0 0 5px;
-    /* Increased margin */
+    margin: 0 0 10px;
+    /* Increased from 5px */
 }
 
 label {
     display: inline-block;
-    margin: 3px 0;
-    /* Increased margin */
+    margin: 5px 0;
+    /* Increased from 3px */
     color: #fff;
     font-size: 16px;
-    /* Slightly larger */
 }
 
 button {
     background-color: #4CAF50;
     color: white;
     padding: 6px 10px;
-    /* Increased padding */
     border: none;
     border-radius: 5px;
-    /* Slightly larger */
     cursor: pointer;
     margin: 0 5px;
-    /* Increased margin */
     font-size: 16px;
-    /* Slightly larger */
 }
 
 button:hover {
@@ -62,15 +54,11 @@ button:hover {
 
 #rollButton {
     display: block;
-    /* Full width */
     width: 100%;
-    /* Full container width */
     padding: 12px;
-    /* Bigger padding */
     font-size: 20px;
-    /* Bigger font */
-    margin-top: 10px;
-    /* Space above */
+    margin-top: 15px;
+    /* Increased from 10px */
 }
 
 #updateButton {
@@ -90,66 +78,61 @@ button:hover {
 }
 
 #results {
-    margin-top: 10px;
-    /* Increased margin */
-    padding: 8px;
-    /* Increased padding */
+    margin-top: 15px;
+    /* Increased from 10px */
+    padding: 10px;
+    /* Increased from 8px */
     background-color: #3a3a3a;
     border-radius: 5px;
     color: #fff;
     font-size: 14px;
-    /* Slightly larger */
 }
 
 .dice-section {
-    margin: 5px 0;
-    /* Increased margin */
+    margin: 10px 0;
+    /* Increased from 5px */
 }
 
 .dice-columns {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    /* Increased gap */
+    gap: 15px;
+    /* Increased from 10px */
 }
 
 .dice-column {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    /* Increased gap */
+    gap: 10px;
+    /* Increased from 5px */
     flex: 1;
 }
 
 .dice-control {
     display: flex;
     align-items: center;
-    gap: 5px;
-    /* Increased gap */
+    gap: 8px;
+    /* Increased from 5px */
     flex-wrap: nowrap;
 }
 
 .dice-control label {
     flex: 0 0 auto;
-    margin-right: 8px;
-    /* Increased margin */
+    margin-right: 10px;
+    /* Increased from 8px */
     white-space: nowrap;
 }
 
 .dice-face {
     display: inline-block;
     width: 40px;
-    /* Slightly larger */
     height: 40px;
-    /* Slightly larger */
     line-height: 40px;
     text-align: center;
     border: 2px solid #ccc;
     border-radius: 6px;
     margin: 3px;
-    /* Increased margin */
     font-size: 16px;
-    /* Slightly larger */
     font-weight: bold;
     color: #000;
 }
@@ -177,53 +160,47 @@ button:hover {
 }
 
 .threshold-section {
-    margin: 5px 0;
-    /* Increased margin */
+    margin: 10px 0;
+    /* Increased from 5px */
 }
 
 .threshold-columns {
     display: flex;
     justify-content: space-between;
-    gap: 10px;
-    /* Increased gap */
+    gap: 15px;
+    /* Increased from 10px */
 }
 
 .threshold-column {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    /* Increased gap */
+    gap: 10px;
+    /* Increased from 5px */
     flex: 1;
 }
 
 .threshold-select {
     padding: 3px;
-    /* Increased padding */
     font-size: 14px;
-    /* Slightly larger */
     color: #000;
     border: 1px solid #555;
     border-radius: 5px;
     width: 100%;
     max-width: 45px;
-    /* Slightly larger */
 }
 
 #characterSelect,
 #characterName {
-    margin: 3px 0;
-    /* Increased margin */
+    margin: 5px 0;
+    /* Increased from 3px */
     padding: 3px;
-    /* Increased padding */
     width: 100%;
     max-width: 180px;
-    /* Slightly larger */
     background-color: #3a3a3a;
     color: #fff;
     border: 1px solid #555;
     border-radius: 5px;
     font-size: 16px;
-    /* Slightly larger */
 }
 
 .green-text {
@@ -245,7 +222,8 @@ button:hover {
 @media (max-width: 480px) {
     .container {
         max-width: 350px;
-        padding: 10px;
+        padding: 15px;
+        /* Increased from 10px */
     }
 
     h1 {
@@ -257,11 +235,13 @@ button:hover {
     }
 
     .dice-control {
-        gap: 3px;
+        gap: 5px;
+        /* Increased from 3px */
     }
 
     .dice-control label {
-        margin-right: 5px;
+        margin-right: 8px;
+        /* Increased from 5px */
         font-size: 14px;
     }
 
@@ -273,6 +253,8 @@ button:hover {
     #rollButton {
         padding: 10px;
         font-size: 18px;
+        margin-top: 12px;
+        /* Increased from 10px */
     }
 
     .dice-face {
@@ -291,16 +273,22 @@ button:hover {
 
     #results {
         font-size: 12px;
+        margin-top: 12px;
+        /* Increased from 10px */
+        padding: 8px;
+        /* Increased from 6px */
     }
 
     .dice-columns,
     .threshold-columns {
-        gap: 6px;
+        gap: 10px;
+        /* Increased from 6px */
     }
 
     .dice-column,
     .threshold-column {
-        gap: 3px;
+        gap: 8px;
+        /* Increased from 3px */
     }
 
     .threshold-select {

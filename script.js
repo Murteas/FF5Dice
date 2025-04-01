@@ -143,7 +143,8 @@ function setDefaultThresholds() {
 }
 
 function changeDice(color, delta) {
-    diceCounts[color] = Math.max(0, diceCounts[color] + delta);
+    const newCount = diceCounts[color] + delta;
+    diceCounts[color] = Math.max(0, Math.min(9, newCount)); // Limit to 0-9
     document.getElementById(`${color}Count`).textContent = diceCounts[color];
 }
 
