@@ -24,15 +24,21 @@ function loadSelectedCharacter() {
     const characterName = select.value;
     const newCharacterInput = document.getElementById('characterName');
     const saveButton = document.getElementById('saveButton');
+    const updateButton = document.getElementById('updateButton');
+    const deleteButton = document.getElementById('deleteButton');
 
     if (characterName === 'new') {
         newCharacterInput.style.display = 'block';
         saveButton.style.display = 'block';
+        updateButton.style.display = 'none';
+        deleteButton.style.display = 'none';
         newCharacterInput.value = '';
         setDefaultThresholds();
     } else if (characterName) {
         newCharacterInput.style.display = 'none';
         saveButton.style.display = 'none';
+        updateButton.style.display = 'block';
+        deleteButton.style.display = 'block';
         const thresholds = characterThresholds[characterName];
         if (thresholds) {
             document.getElementById('greenThreshold').value = thresholds.green.toString();
@@ -42,6 +48,12 @@ function loadSelectedCharacter() {
         } else {
             setDefaultThresholds();
         }
+    } else {
+        newCharacterInput.style.display = 'none';
+        saveButton.style.display = 'none';
+        updateButton.style.display = 'none';
+        deleteButton.style.display = 'none';
+        setDefaultThresholds();
     }
 }
 
@@ -61,6 +73,37 @@ function saveThresholds() {
         loadSelectedCharacter();
     } else {
         alert('Please enter a character name');
+    }
+}
+
+function updateThresholds() {
+    const characterName = document.getElementById('characterSelect').value;
+    if (characterName && characterName !== 'new') {
+        characterThresholds[characterName] = {
+            green: parseInt(document.getElementById('greenThreshold').value),
+            red: parseInt(document.getElementById('redThreshold').value),
+            blue: parseInt(document.getElementById('blueThreshold').value),
+            yellow: parseInt(document.getElementById('yellowThreshold').value)
+        };
+        localStorage.setItem('characterThresholds', JSON.stringify(characterThresholds));
+        alert(`Thresholds updated for ${characterName}`);
+        populateCharacterDropdown();
+        document.getElementById('characterSelect').value = characterName;
+        loadSelectedCharacter();
+    } else {
+        alert('Please select a character to update');
+    }
+}
+
+function deleteCharacter() {
+    const characterName = document.getElementById('characterSelect').value;
+    if (characterName && characterName !== 'new' && confirm(`Are you sure you want to delete ${characterName}?`)) {
+        delete characterThresholds[characterName];
+        localStorage.setItem('characterThresholds', JSON.stringify(characterThresholds));
+        alert(`${characterName} deleted`);
+        populateCharacterDropdown();
+        document.getElementById('characterSelect').value = '';
+        loadSelectedCharacter();
     }
 }
 

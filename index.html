@@ -19,31 +19,40 @@
             </select>
             <input type="text" id="characterName" placeholder="Enter New Character Name" style="display:none;">
             <button onclick="saveThresholds()" id="saveButton" style="display:none;">Save</button>
+            <button onclick="updateThresholds()" id="updateButton" style="display:none;">Update</button>
+            <button onclick="deleteCharacter()" id="deleteButton" style="display:none;">Delete</button>
         </div>
         <div class="dice-section">
-            <div class="dice-control">
-                <label class="green-text">Green:</label>
-                <button onclick="changeDice('green', -1)">-</button>
-                <span id="greenCount">0</span>
-                <button onclick="changeDice('green', 1)">+</button>
-            </div>
-            <div class="dice-control">
-                <label class="red-text">Red:</label>
-                <button onclick="changeDice('red', -1)">-</button>
-                <span id="redCount">0</span>
-                <button onclick="changeDice('red', 1)">+</button>
-            </div>
-            <div class="dice-control">
-                <label class="blue-text">Blue:</label>
-                <button onclick="changeDice('blue', -1)">-</button>
-                <span id="blueCount">0</span>
-                <button onclick="changeDice('blue', 1)">+</button>
-            </div>
-            <div class="dice-control">
-                <label class="yellow-text">Yellow:</label>
-                <button onclick="changeDice('yellow', -1)">-</button>
-                <span id="yellowCount">0</span>
-                <button onclick="changeDice('yellow', 1)">+</button>
+            <h2>Dice</h2>
+            <div class="dice-columns">
+                <div class="dice-column">
+                    <div class="dice-control">
+                        <label class="green-text">Green:</label>
+                        <button onclick="changeDice('green', -1)">-</button>
+                        <span id="greenCount">0</span>
+                        <button onclick="changeDice('green', 1)">+</button>
+                    </div>
+                    <div class="dice-control">
+                        <label class="red-text">Red:</label>
+                        <button onclick="changeDice('red', -1)">-</button>
+                        <span id="redCount">0</span>
+                        <button onclick="changeDice('red', 1)">+</button>
+                    </div>
+                </div>
+                <div class="dice-column">
+                    <div class="dice-control">
+                        <label class="blue-text">Blue:</label>
+                        <button onclick="changeDice('blue', -1)">-</button>
+                        <span id="blueCount">0</span>
+                        <button onclick="changeDice('blue', 1)">+</button>
+                    </div>
+                    <div class="dice-control">
+                        <label class="yellow-text">Yellow:</label>
+                        <button onclick="changeDice('yellow', -1)">-</button>
+                        <span id="yellowCount">0</span>
+                        <button onclick="changeDice('yellow', 1)">+</button>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="threshold-section">
