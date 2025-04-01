@@ -28,19 +28,19 @@ function loadSelectedCharacter() {
         newCharacterInput.style.display = 'block';
         saveButton.style.display = 'block';
         newCharacterInput.value = '';
-        document.getElementById('greenThreshold').value = 4;
-        document.getElementById('redThreshold').value = 4;
-        document.getElementById('blueThreshold').value = 4;
-        document.getElementById('yellowThreshold').value = 4;
+        document.getElementById('greenThreshold').value = '4';
+        document.getElementById('redThreshold').value = '4';
+        document.getElementById('blueThreshold').value = '4';
+        document.getElementById('yellowThreshold').value = '4';
     } else if (characterName) {
         newCharacterInput.style.display = 'none';
         saveButton.style.display = 'none';
         const thresholds = characterThresholds[characterName];
         if (thresholds) {
-            document.getElementById('greenThreshold').value = thresholds.green;
-            document.getElementById('redThreshold').value = thresholds.red;
-            document.getElementById('blueThreshold').value = thresholds.blue;
-            document.getElementById('yellowThreshold').value = thresholds.yellow;
+            document.getElementById('greenThreshold').value = thresholds.green.toString();
+            document.getElementById('redThreshold').value = thresholds.red.toString();
+            document.getElementById('blueThreshold').value = thresholds.blue.toString();
+            document.getElementById('yellowThreshold').value = thresholds.yellow.toString();
         }
     }
 }
@@ -88,7 +88,7 @@ function rollDice() {
         green: 4, red: 4, blue: 4, yellow: 4
     };
 
-    const colors = ['green', 'red', 'blue', 'yellow']; // Updated order
+    const colors = ['green', 'red', 'blue', 'yellow'];
     let allResults = '';
 
     colors.forEach(color => {
@@ -99,15 +99,13 @@ function rollDice() {
                 rolls.push(Math.floor(Math.random() * 6) + 1); // Ensures d6 (1-6)
             }
 
-            const successes = rolls.filter(roll => roll >= thresholds[color]).length;
+            const successThreshold = thresholds[color];
+            const successes = rolls.filter(roll => roll >= successThreshold).length;
             let diceFaces = rolls.map(roll => {
-                const faceMap = {
-                    1: '⚀', 2: '⚁', 3: '⚂', 4: '⚃', 5: '⚄', 6: '⚅'
-                };
-                return `<span class="dice-face">${faceMap[roll]}</span>`;
+                return `<span class="dice-face dice-face-${roll}"></span>`;
             }).join(' ');
 
-            allResults += `<p class="${color}-text">${color.toUpperCase()} Dice (${numDice} rolled): ${diceFaces}<br>Successes (≥${thresholds[color]}): ${successes}</p>`;
+            allResults += `<p class="${color}-text">${color.toUpperCase()} Dice (${numDice} rolled): ${diceFaces}<br>Successes (≥${successThreshold}): ${successes}</p>`;
         }
     });
 
