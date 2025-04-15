@@ -1,5 +1,11 @@
+const thresholds = {
+    green: 4,
+    red: 4,
+    blue: 4,
+    yellow: 4,
+};
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Add this check for default character
     if (!localStorage.getItem('characters')) {
         localStorage.setItem('characters', JSON.stringify([
             { name: 'Default', thresholds: { green: 4, red: 4, blue: 4, yellow: 4 } }
@@ -10,16 +16,69 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('addCharacter').addEventListener('click', addCharacter);
     document.getElementById('updateCharacter').addEventListener('click', updateCharacter);
     document.getElementById('deleteCharacter').addEventListener('click', deleteCharacter);
+
+    const diceCounts = {
+        green: 0,
+        red: 0,
+        blue: 0,
+        yellow: 0,
+    };
+
+    function updateDiceCount(color) {
+        document.getElementById(`${color}Count`).textContent = diceCounts[color];
+    }
+
+    document.querySelector('.dice-section').addEventListener('click', (event) => {
+        const button = event.target;
+        const color = button.dataset.color;
+
+        if (button.classList.contains('increment')) {
+            diceCounts[color]++;
+            updateDiceCount(color);
+        } else if (button.classList.contains('decrement')) {
+            diceCounts[color] = Math.max(0, diceCounts[color] - 1);
+            updateDiceCount(color);
+        }
+    });
+
     document.getElementById('rollButton').addEventListener('click', rollDice);
+
+    function rollDice() {
+        const results = [];
+        for (const [color, count] of Object.entries(diceCounts)) {
+            for (let i = 0; i < count; i++) {
+                const roll = Math.ceil(Math.random() * 6);
+                results.push({ color, roll });
+            }
+        }
+
+        displayResults(results);
+    }
+
+    function displayResults(results) {
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '';
+
+        results.forEach(({ color, roll }) => {
+            const resultSpan = document.createElement('span');
+            resultSpan.textContent = `${color}: ${roll}`;
+            resultSpan.classList.add(`${color}-text`);
+            resultsDiv.appendChild(resultSpan);
+        });
+    }
+
+    // Sync thresholds with the DOM
+    Object.keys(thresholds).forEach((color) => {
+        const select = document.getElementById(`${color}Threshold`);
+        select.value = thresholds[color];
+
+        select.addEventListener('change', () => {
+            thresholds[color] = parseInt(select.value, 10);
+        });
+    });
 });
 
 let characterThresholds = {};
-let diceCounts = {
-    green: 0,
-    red: 0,
-    blue: 0,
-    yellow: 0
-};
 
 function populateCharacterDropdown() {
     const select = document.getElementById('characterSelect');
@@ -109,12 +168,10 @@ function updateThresholds() {
 function deleteCharacter() {
     const characterSelect = document.getElementById('characterSelect');
     const name = characterSelect.value;
-    // Check for empty selection
     if (!name) {
         alert('Please select a character to delete.');
         return;
     }
-    // Add this confirmation
     if (confirm(`Delete ${name}?`)) {
         let characters = JSON.parse(localStorage.getItem('characters')) || [];
         characters = characters.filter(char => char.name !== name);
@@ -160,59 +217,6 @@ function setDefaultThresholds() {
     document.getElementById('yellowThreshold').value = '4';
 }
 
-function changeDice(color, delta) {
-    const newCount = diceCounts[color] + delta;
-    diceCounts[color] = Math.max(0, Math.min(9, newCount));
-    document.getElementById(`${color}Count`).textContent = diceCounts[color];
-}
-
-function rollDice() {
-    const resultsDiv = document.getElementById('results');
-    resultsDiv.innerHTML = '';
-
-    const characterName = document.getElementById('characterSelect').value;
-    let thresholds = characterThresholds[characterName] || {
-        green: 4, red: 4, blue: 4, yellow: 4
-    };
-
-    thresholds = {
-        green: parseInt(document.getElementById('greenThreshold').value),
-        red: parseInt(document.getElementById('redThreshold').value),
-        blue: parseInt(document.getElementById('blueThreshold').value),
-        yellow: parseInt(document.getElementById('yellowThreshold').value)
-    };
-
-    const colors = ['green', 'red', 'blue', 'yellow'];
-    let allResults = '';
-
-    colors.forEach(color => {
-        const numDice = diceCounts[color];
-        if (numDice > 0) {
-            let rolls = [];
-            for (let i = 0; i < numDice; i++) {
-                rolls.push(Math.floor(Math.random() * 6) + 1);
-            }
-
-            const successThreshold = thresholds[color];
-            let diceFaces = rolls.map(roll => {
-                const isSuccess = roll >= successThreshold;
-                return `<span class="dice-face ${color}-dice ${isSuccess ? 'success' : ''}">${roll}</span>`;
-            }).join(' ');
-
-            allResults += `<p class="${color}-text">${color.toUpperCase()} (≥${successThreshold}): ${diceFaces}</p>`;
-        }
-    });
-
-    if (allResults) {
-        resultsDiv.innerHTML = allResults;
-    } else {
-        resultsDiv.innerHTML = '<p>No dice to roll</p>';
-    }
-}
-
 window.onload = function() {
     loadThresholds();
-    for (let color in diceCounts) {
-        document.getElementById(`${color}Count`).textContent = diceCounts[color];
-    }
 };

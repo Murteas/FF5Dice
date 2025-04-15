@@ -33,15 +33,15 @@
                 <div class="dice-column">
                     <div class="dice-control">
                         <label class="green-text">Green:</label>
-                        <button onclick="changeDice('green', -1)">-</button>
+                        <button class="decrement" data-color="green">-</button>
                         <span id="greenCount">0</span>
-                        <button onclick="changeDice('green', 1)">+</button>
+                        <button class="increment" data-color="green">+</button>
                     </div>
                     <div class="dice-control">
                         <label class="red-text">Red:</label>
-                        <button onclick="changeDice('red', -1)">-</button>
+                        <button class="decrement" data-color="red">-</button>
                         <span id="redCount">0</span>
-                        <button onclick="changeDice('red', 1)">+</button>
+                        <button class="increment" data-color="red">+</button>
                     </div>
                 </div>
                 <div class="dice-column">
@@ -98,7 +98,7 @@
             </div>
         </div>
         <div id="results"></div>
-        <button onclick="rollDice()" id="rollButton">Roll</button>
+        <button id="rollButton">Roll</button>
     </div>
     <script src="script.js"></script>
     <script>
