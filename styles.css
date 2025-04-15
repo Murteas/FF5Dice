@@ -79,13 +79,35 @@ button:hover {
     background-color: #c0392b;
 }
 
-#results {
-    margin-top: 15px;
-    padding: 10px;
-    background-color: #3a3a3a;
+.results {
+    margin-top: 10px;
+    text-align: center;
+    /* Add these for layout */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+.result {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 2px;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    color: #fff;
-    font-size: 14px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Add these new rules */
+.result.success {
+    border: 2px solid gold;
+}
+
+.result.fail {
+    filter: grayscale(50%);
 }
 
 .character-section {
@@ -264,11 +286,7 @@ button:hover {
         box-shadow: 0 0 4px #FFD700;
     }
 
-    #results {
-        font-size: 12px;
-        margin-top: 12px;
-        padding: 8px;
-    }
+
 
     .dice-columns {
         gap: 10px;
