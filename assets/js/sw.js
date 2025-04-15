@@ -1,4 +1,3 @@
-// sw.js
 self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open('ff5dice-v1').then((cache) => {
