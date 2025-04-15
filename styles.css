@@ -33,14 +33,22 @@ label {
 }
 
 button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 6px 10px;
+    padding: 10px;
+    font-size: 1.2em;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 0 5px;
-    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    margin: 5px;
+    transition: background-color 0.2s;
+    min-height: 48px;
+    padding: 8px;
+}
+
+/* Add this new rule */
+button:active {
+    background-color: #ddd;
 }
 
 button:hover {
