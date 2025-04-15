@@ -1,3 +1,18 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Add this check for default character
+    if (!localStorage.getItem('characters')) {
+        localStorage.setItem('characters', JSON.stringify([
+            { name: 'Default', thresholds: { green: 4, red: 4, blue: 4, yellow: 4 } }
+        ]));
+    }
+    loadCharacters();
+    document.getElementById('characterSelect').addEventListener('change', loadCharacterData);
+    document.getElementById('addCharacter').addEventListener('click', addCharacter);
+    document.getElementById('updateCharacter').addEventListener('click', updateCharacter);
+    document.getElementById('deleteCharacter').addEventListener('click', deleteCharacter);
+    document.getElementById('rollButton').addEventListener('click', rollDice);
+});
+
 let characterThresholds = {};
 let diceCounts = {
     green: 0,
@@ -92,14 +107,21 @@ function updateThresholds() {
 }
 
 function deleteCharacter() {
-    const characterName = document.getElementById('characterSelect').value;
-    if (characterName && characterName !== 'new' && confirm(`Are you sure you want to delete ${characterName}?`)) {
-        delete characterThresholds[characterName];
-        localStorage.setItem('characterThresholds', JSON.stringify(characterThresholds));
-        alert(`${characterName} deleted`);
-        populateCharacterDropdown();
-        document.getElementById('characterSelect').value = '';
-        loadSelectedCharacter();
+    const characterSelect = document.getElementById('characterSelect');
+    const name = characterSelect.value;
+    // Check for empty selection
+    if (!name) {
+        alert('Please select a character to delete.');
+        return;
+    }
+    // Add this confirmation
+    if (confirm(`Delete ${name}?`)) {
+        let characters = JSON.parse(localStorage.getItem('characters')) || [];
+        characters = characters.filter(char => char.name !== name);
+        localStorage.setItem('characters', JSON.stringify(characters));
+        loadCharacters();
+        document.getElementById('characterName').value = '';
+        resetDiceInputs();
     }
 }
 
