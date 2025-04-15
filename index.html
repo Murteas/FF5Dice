@@ -7,6 +7,7 @@
     <title>Freedom Five Dice Roller</title>
     <meta name="mobile-web-app-capable" content="yes">
     <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 
 <body>
@@ -100,6 +101,11 @@
         <button onclick="rollDice()" id="rollButton">Roll</button>
     </div>
     <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/sw.js');
+        }
+    </script>
 </body>
 
 </html>
