@@ -7,7 +7,7 @@
   "theme_color": "#000",
   "icons": [
     {
-      "src": "./assets/icon.png",
+      "src": "/FF5Dice/assets/icon.png",
       "sizes": "192x192",
       "type": "image/png"
     }

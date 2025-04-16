@@ -12,6 +12,20 @@ const diceCounts = {
   yellow: 0,
 };
 
+// Move loadCharacters up to ensure it's defined before being called
+function loadCharacters() {
+  const characters = JSON.parse(localStorage.getItem("characters")) || [];
+  const select = document.getElementById("characterSelect");
+  select.innerHTML =
+    '<option value="">Select Character or Create New</option><option value="new">New Character</option>';
+  characters.forEach((char) => {
+    const option = document.createElement("option");
+    option.value = char.name;
+    option.textContent = char.name;
+    select.appendChild(option);
+  });
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   if (!localStorage.getItem("characters")) {
     localStorage.setItem(
@@ -223,19 +237,6 @@ function deleteCharacter() {
     document.getElementById("characterName").value = "";
     resetDiceInputs();
   }
-}
-
-function loadCharacters() {
-  const characters = JSON.parse(localStorage.getItem("characters")) || [];
-  const select = document.getElementById("characterSelect");
-  select.innerHTML =
-    '<option value="">Select Character or Create New</option><option value="new">New Character</option>';
-  characters.forEach((char) => {
-    const option = document.createElement("option");
-    option.value = char.name;
-    option.textContent = char.name;
-    select.appendChild(option);
-  });
 }
 
 function loadThresholds() {
