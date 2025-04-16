@@ -12,7 +12,6 @@ const diceCounts = {
   yellow: 0,
 };
 
-// Move loadCharacters up to ensure it's defined before being called
 function loadCharacters() {
   const characters = JSON.parse(localStorage.getItem("characters")) || [];
   const select = document.getElementById("characterSelect");
@@ -108,10 +107,10 @@ document.addEventListener("DOMContentLoaded", () => {
     resultsDiv.innerHTML = "";
 
     results.forEach(({ color, roll }) => {
-      const resultSpan = document.createElement("span");
-      resultSpan.textContent = `${color}: ${roll}`;
-      resultSpan.classList.add(`${color}-text`);
-      resultsDiv.appendChild(resultSpan);
+      const dieSpan = document.createElement("span");
+      dieSpan.textContent = roll; // Display the roll digit directly
+      dieSpan.classList.add("die", `${color}-text`);
+      resultsDiv.appendChild(dieSpan);
     });
   }
 

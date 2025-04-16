@@ -1,319 +1,231 @@
+/* General styles for dark theme */
 body {
+    background-color: #1a1a1a;
+    color: #fff;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 20px;
-    background-color: #1a1a1a;
-    color: #fff;
 }
 
 .container {
-    max-width: 400px;
+    max-width: 600px;
     margin: 0 auto;
-    background: #2a2a2a;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    padding: 10px;
 }
 
-h1 {
-    font-size: 20px;
-    margin: 0 0 15px;
+/* Character section */
+.character-section {
+    margin-bottom: 20px;
 }
 
-h2 {
-    font-size: 18px;
-    margin: 0 0 10px;
-}
-
-label {
-    display: inline-block;
-    margin: 5px 0;
+.character-section select,
+.character-section input {
+    background-color: #333;
     color: #fff;
-    font-size: 16px;
+    border: 1px solid #555;
+    padding: 5px;
+    margin: 5px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#newCharacterButtons,
+#editCharacterButtons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
 }
 
 button {
-    padding: 10px;
-    font-size: 1.2em;
+    background-color: #444;
+    color: #fff;
     border: none;
-    border-radius: 5px;
+    padding: 5px 10px;
     cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    margin: 5px;
-    transition: background-color 0.2s;
-    min-height: 48px;
-    padding: 8px;
-}
-
-/* Add this new rule */
-button:active {
-    background-color: #ddd;
+    border-radius: 3px;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #555;
 }
 
-#rollButton {
+/* Threshold section */
+.threshold-section {
+    margin-bottom: 20px;
+}
+
+.threshold-section label {
     display: block;
+    margin: 5px 0;
+}
+
+.threshold-section select {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    padding: 5px;
     width: 100%;
-    padding: 12px;
-    font-size: 20px;
-    margin-top: 15px;
+    box-sizing: border-box;
 }
 
-#updateButton {
-    background-color: #3498db;
-}
-
-#updateButton:hover {
-    background-color: #2980b9;
-}
-
-#deleteButton {
-    background-color: #e74c3c;
-}
-
-#deleteButton:hover {
-    background-color: #c0392b;
-}
-
-.results {
-    margin-top: 10px;
-    text-align: center;
-    /* Add these for layout */
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-}
-
-.result {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    margin: 2px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    font-weight: bold;
-}
-
-/* Add these new rules */
-.result.success {
-    border: 2px solid gold;
-}
-
-.result.fail {
-    filter: grayscale(50%);
-}
-
-.character-section {
-    margin-bottom: 15px;
-    /* Increased spacing */
-}
-
-.button-group {
-    display: flex;
-    gap: 15px;
-    /* Space between buttons */
-    margin-top: 5px;
-}
-
+/* Dice section */
 .dice-section {
-    margin: 10px 0;
+    margin-bottom: 20px;
 }
 
 .dice-columns {
     display: flex;
-    justify-content: space-between;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .dice-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
     flex: 1;
+    min-width: 150px;
 }
 
 .dice-control {
     display: flex;
     align-items: center;
-    gap: 8px;
-    flex-wrap: nowrap;
+    gap: 5px;
+    margin-bottom: 10px;
 }
 
 .dice-control label {
-    flex: 0 0 auto;
-    margin-right: 10px;
-    white-space: nowrap;
+    flex: 1;
 }
 
-.dice-face {
+.dice-control button {
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    font-size: 1.2rem;
+}
+
+.dice-control span {
+    width: 30px;
+    text-align: center;
+}
+
+/* Results section */
+#results {
+    margin-top: 20px;
+    min-height: 50px;
+}
+
+#results span {
+    margin-right: 10px;
+}
+
+/* Roll button */
+#rollButton {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.5rem;
+    background-color: #2ecc71;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+#rollButton:hover {
+    background-color: #27ae60;
+}
+
+/* Color classes */
+.green-text {
+    background-color: #2ecc71;
+}
+
+.red-text {
+    background-color: #e74c3c;
+}
+
+.blue-text {
+    background-color: #3498db;
+}
+
+.yellow-text {
+    background-color: #f1c40f;
+}
+
+/* Dice visuals as colored boxes */
+.die {
     display: inline-block;
     width: 40px;
     height: 40px;
     line-height: 40px;
     text-align: center;
-    border: 2px solid #ccc;
-    border-radius: 6px;
-    margin: 3px;
-    font-size: 16px;
+    font-size: 1.5rem;
     font-weight: bold;
-    color: #000;
-}
-
-.green-dice {
-    background-color: #2ecc71;
-}
-
-.red-dice {
-    background-color: #e74c3c;
-}
-
-.blue-dice {
-    background-color: #3498db;
-}
-
-.yellow-dice {
-    background-color: #f1c40f;
-}
-
-.dice-face.success {
-    border: 4px solid #FFD700;
-    box-shadow: 0 0 6px #FFD700;
-    transform: scale(1.1);
-}
-
-.threshold-section {
-    margin: 10px 0;
-}
-
-.threshold-row {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    /* Space between dropdowns */
-}
-
-.threshold-select {
-    padding: 3px;
-    font-size: 14px;
-    color: #000;
-    border: 1px solid #555;
-    border-radius: 5px;
-    width: 45px;
-    /* Fixed width for consistency */
-}
-
-#characterSelect,
-#characterName {
-    margin: 5px 0;
-    padding: 3px;
-    width: 100%;
-    max-width: 180px;
-    background-color: #3a3a3a;
     color: #fff;
-    border: 1px solid #555;
+    border: 2px solid #fff;
     border-radius: 5px;
-    font-size: 16px;
+    margin: 5px;
 }
 
-.green-text {
+/* Labels for thresholds and dice controls */
+.green-text-label {
     color: #2ecc71;
 }
 
-.red-text {
+.red-text-label {
     color: #e74c3c;
 }
 
-.blue-text {
+.blue-text-label {
     color: #3498db;
 }
 
-.yellow-text {
+.yellow-text-label {
     color: #f1c40f;
 }
 
+/* Mobile adjustments */
 @media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
     .container {
-        max-width: 350px;
-        padding: 15px;
-    }
-
-    h1 {
-        font-size: 18px;
-    }
-
-    h2 {
-        font-size: 16px;
-    }
-
-    .dice-control {
-        gap: 5px;
-    }
-
-    .dice-control label {
-        margin-right: 8px;
-        font-size: 14px;
+        padding: 5px;
     }
 
     button {
-        padding: 5px 8px;
-        font-size: 14px;
+        padding: 8px 12px;
+        font-size: 16px;
+        min-height: 50px;
+    }
+
+    .dice-columns {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dice-control button {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .dice-control span {
+        width: 40px;
+        font-size: 1.2rem;
     }
 
     #rollButton {
-        padding: 10px;
-        font-size: 18px;
-        margin-top: 12px;
+        font-size: 1.2rem;
+        padding: 12px;
     }
 
-    .dice-face {
-        width: 34px;
-        height: 34px;
-        line-height: 34px;
-        font-size: 14px;
-        border-radius: 5px;
-        margin: 2px;
-    }
-
-    .dice-face.success {
-        border-width: 3px;
-        box-shadow: 0 0 4px #FFD700;
-    }
-
-
-
-    .dice-columns {
-        gap: 10px;
-    }
-
-    .dice-column {
-        gap: 8px;
-    }
-
-    .threshold-row {
-        gap: 8px;
-        /* Slightly smaller gap on mobile */
-    }
-
-    .threshold-select {
-        width: 40px;
-        font-size: 12px;
-    }
-
-    #characterSelect,
-    #characterName {
-        max-width: 150px;
-        font-size: 14px;
-    }
-
-    .button-group {
-        gap: 10px;
-        /* Slightly smaller gap on mobile */
+    .die {
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+        font-size: 1.2rem;
+        margin: 3px;
     }
 }
