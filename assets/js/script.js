@@ -108,20 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     results.forEach(({ color, roll }) => {
       const dieSpan = document.createElement("span");
-      dieSpan.textContent = roll; // Display the roll digit directly
+      dieSpan.textContent = roll;
       dieSpan.classList.add("die", `${color}-text`);
       resultsDiv.appendChild(dieSpan);
     });
   }
-
-  Object.keys(thresholds).forEach((color) => {
-    const select = document.getElementById(`${color}Threshold`);
-    select.value = thresholds[color];
-
-    select.addEventListener("change", () => {
-      thresholds[color] = parseInt(select.value, 10);
-    });
-  });
 });
 
 let characterThresholds = {};
@@ -144,52 +135,69 @@ function loadSelectedCharacter() {
   const select = document.getElementById("characterSelect");
   const characterName = select.value;
   const newCharacterInput = document.getElementById("characterName");
+  const thresholdInputs = document.getElementById("thresholdInputs");
   const newCharacterButtons = document.getElementById("newCharacterButtons");
   const editCharacterButtons = document.getElementById("editCharacterButtons");
 
   if (characterName === "new") {
     newCharacterInput.style.display = "block";
+    thresholdInputs.style.display = "block";
     newCharacterButtons.style.display = "flex";
     editCharacterButtons.style.display = "none";
     newCharacterInput.value = "";
     setDefaultThresholds();
   } else if (characterName) {
     newCharacterInput.style.display = "none";
+    thresholdInputs.style.display = "block";
     newCharacterButtons.style.display = "none";
     editCharacterButtons.style.display = "flex";
     const thresholds = characterThresholds[characterName];
     if (thresholds) {
-      document.getElementById("greenThreshold").value =
-        thresholds.green.toString();
-      document.getElementById("redThreshold").value = thresholds.red.toString();
-      document.getElementById("blueThreshold").value =
-        thresholds.blue.toString();
-      document.getElementById("yellowThreshold").value =
-        thresholds.yellow.toString();
+      updateThresholdDisplay(thresholds);
+      document.getElementById("greenThresholdInput").value = thresholds.green;
+      document.getElementById("redThresholdInput").value = thresholds.red;
+      document.getElementById("blueThresholdInput").value = thresholds.blue;
+      document.getElementById("yellowThresholdInput").value = thresholds.yellow;
     } else {
       setDefaultThresholds();
     }
   } else {
     newCharacterInput.style.display = "none";
+    thresholdInputs.style.display = "none";
     newCharacterButtons.style.display = "none";
     editCharacterButtons.style.display = "none";
     setDefaultThresholds();
   }
 }
 
+function updateThresholdDisplay(thresholds) {
+  document.getElementById("greenThreshold").textContent = thresholds.green;
+  document.getElementById("redThreshold").textContent = thresholds.red;
+  document.getElementById("blueThreshold").textContent = thresholds.blue;
+  document.getElementById("yellowThreshold").textContent = thresholds.yellow;
+}
+
 function saveThresholds() {
   const characterName = document.getElementById("characterName").value.trim();
   if (characterName) {
-    characterThresholds[characterName] = {
-      green: parseInt(document.getElementById("greenThreshold").value),
-      red: parseInt(document.getElementById("redThreshold").value),
-      blue: parseInt(document.getElementById("blueThreshold").value),
-      yellow: parseInt(document.getElementById("yellowThreshold").value),
+    const newThresholds = {
+      green: parseInt(document.getElementById("greenThresholdInput").value),
+      red: parseInt(document.getElementById("redThresholdInput").value),
+      blue: parseInt(document.getElementById("blueThresholdInput").value),
+      yellow: parseInt(document.getElementById("yellowThresholdInput").value),
     };
+    characterThresholds[characterName] = newThresholds;
     localStorage.setItem(
       "characterThresholds",
       JSON.stringify(characterThresholds)
     );
+
+    let characters = JSON.parse(localStorage.getItem("characters")) || [];
+    if (!characters.some((char) => char.name === characterName)) {
+      characters.push({ name: characterName, thresholds: newThresholds });
+      localStorage.setItem("characters", JSON.stringify(characters));
+    }
+
     alert(`Thresholds saved for ${characterName}`);
     populateCharacterDropdown();
     document.getElementById("characterSelect").value = characterName;
@@ -202,16 +210,26 @@ function saveThresholds() {
 function updateThresholds() {
   const characterName = document.getElementById("characterSelect").value;
   if (characterName && characterName !== "new") {
-    characterThresholds[characterName] = {
-      green: parseInt(document.getElementById("greenThreshold").value),
-      red: parseInt(document.getElementById("redThreshold").value),
-      blue: parseInt(document.getElementById("blueThreshold").value),
-      yellow: parseInt(document.getElementById("yellowThreshold").value),
+    const updatedThresholds = {
+      green: parseInt(document.getElementById("greenThresholdInput").value),
+      red: parseInt(document.getElementById("redThresholdInput").value),
+      blue: parseInt(document.getElementById("blueThresholdInput").value),
+      yellow: parseInt(document.getElementById("yellowThresholdInput").value),
     };
+    characterThresholds[characterName] = updatedThresholds;
     localStorage.setItem(
       "characterThresholds",
       JSON.stringify(characterThresholds)
     );
+
+    let characters = JSON.parse(localStorage.getItem("characters")) || [];
+    characters = characters.map((char) =>
+      char.name === characterName
+        ? { name: characterName, thresholds: updatedThresholds }
+        : char
+    );
+    localStorage.setItem("characters", JSON.stringify(characters));
+
     alert(`Thresholds updated for ${characterName}`);
     populateCharacterDropdown();
     document.getElementById("characterSelect").value = characterName;
@@ -232,6 +250,11 @@ function deleteCharacter() {
     let characters = JSON.parse(localStorage.getItem("characters")) || [];
     characters = characters.filter((char) => char.name !== name);
     localStorage.setItem("characters", JSON.stringify(characters));
+    delete characterThresholds[name];
+    localStorage.setItem(
+      "characterThresholds",
+      JSON.stringify(characterThresholds)
+    );
     loadCharacters();
     document.getElementById("characterName").value = "";
     resetDiceInputs();
@@ -270,10 +293,14 @@ function loadThresholds() {
 }
 
 function setDefaultThresholds() {
-  document.getElementById("greenThreshold").value = "4";
-  document.getElementById("redThreshold").value = "4";
-  document.getElementById("blueThreshold").value = "4";
-  document.getElementById("yellowThreshold").value = "4";
+  document.getElementById("greenThreshold").textContent = "4";
+  document.getElementById("redThreshold").textContent = "4";
+  document.getElementById("blueThreshold").textContent = "4";
+  document.getElementById("yellowThreshold").textContent = "4";
+  document.getElementById("greenThresholdInput").value = "4";
+  document.getElementById("redThresholdInput").value = "4";
+  document.getElementById("blueThresholdInput").value = "4";
+  document.getElementById("yellowThresholdInput").value = "4";
 }
 
 function resetDiceInputs() {

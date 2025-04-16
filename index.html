@@ -20,102 +20,90 @@
                 <option value="">Select Character or Create New</option>
                 <option value="new">New Character</option>
             </select>
-            <input type="text" id="characterName" placeholder="Enter New Character Name" style="display:none;">
-            <div class="button-group" id="newCharacterButtons" style="display:none;">
-                <button onclick="saveThresholds()" id="saveButton">Save</button>
-            </div>
-            <div class="button-group" id="editCharacterButtons" style="display:none;">
-                <button onclick="updateThresholds()" id="updateButton">Update</button>
-                <button onclick="deleteCharacter()" id="deleteButton">Delete</button>
-            </div>
-        </div>
-    <div class="dice-section">
-        <h2>Dice</h2>
-        <div class="dice-columns">
-            <div class="dice-column">
-                <div class="dice-control">
-                    <label class="green-text">Green:</label>
-                    <button class="decrement" data-color="green">-</button>
-                    <span id="greenCount">0</span>
-                    <button class="increment" data-color="green">+</button>
+            <input type="text" id="characterName" placeholder="Character Name" style="display: none;">
+            <div id="thresholdInputs" style="display: none;">
+                <div class="threshold-input">
+                    <label class="green-text-label">Green Threshold:</label>
+                    <input type="number" id="greenThresholdInput" min="1" max="6" value="4">
                 </div>
-                <div class="dice-control">
-                    <label class="red-text">Red:</label>
-                    <button class="decrement" data-color="red">-</button>
-                    <span id="redCount">0</span>
-                    <button class="increment" data-color="red">+</button>
+                <div class="threshold-input">
+                    <label class="red-text-label">Red Threshold:</label>
+                    <input type="number" id="redThresholdInput" min="1" max="6" value="4">
+                </div>
+                <div class="threshold-input">
+                    <label class="blue-text-label">Blue Threshold:</label>
+                    <input type="number" id="blueThresholdInput" min="1" max="6" value="4">
+                </div>
+                <div class="threshold-input">
+                    <label class="yellow-text-label">Yellow Threshold:</label>
+                    <input type="number" id="yellowThresholdInput" min="1" max="6" value="4">
                 </div>
             </div>
-            <div class="dice-column">
-                <div class="dice-control">
-                    <label class="blue-text">Blue:</label>
-                    <button class="decrement" data-color="blue">-</button>
-                    <span id="blueCount">0</span>
-                    <button class="increment" data-color="blue">+</button>
-                </div>
-                <div class="dice-control">
-                    <label class="yellow-text">Yellow:</label>
-                    <button class="decrement" data-color="yellow">-</button>
-                    <span id="yellowCount">0</span>
-                    <button class="increment" data-color="yellow">+</button>
-                </div>
+            <div id="newCharacterButtons" style="display: none;">
+                <button onclick="saveThresholds()">Save</button>
+            </div>
+            <div id="editCharacterButtons" style="display: none;">
+                <button onclick="updateThresholds()">Update</button>
+                <button onclick="deleteCharacter()">Delete</button>
             </div>
         </div>
-    </div>
+
+        <div class="dice-section">
+            <h2>Dice</h2>
+            <div class="dice-columns">
+                <div class="dice-column">
+                    <div class="dice-control">
+                        <label class="green-text-label">Green:</label>
+                        <button class="decrement" data-color="green">-</button>
+                        <span id="greenCount">0</span>
+                        <button class="increment" data-color="green">+</button>
+                    </div>
+                    <div class="dice-control">
+                        <label class="red-text-label">Red:</label>
+                        <button class="decrement" data-color="red">-</button>
+                        <span id="redCount">0</span>
+                        <button class="increment" data-color="red">+</button>
+                    </div>
+                </div>
+                <div class="dice-column">
+                    <div class="dice-control">
+                        <label class="blue-text-label">Blue:</label>
+                        <button class="decrement" data-color="blue">-</button>
+                        <span id="blueCount">0</span>
+                        <button class="increment" data-color="blue">+</button>
+                    </div>
+                    <div class="dice-control">
+                        <label class="yellow-text-label">Yellow:</label>
+                        <button class="decrement" data-color="yellow">-</button>
+                        <span id="yellowCount">0</span>
+                        <button class="increment" data-color="yellow">+</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="threshold-section">
-            <h2>Threshold</h2>
-            <div class="threshold-row">
-                <select id="greenThreshold" class="threshold-select green-dice">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4" selected>4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-                <select id="redThreshold" class="threshold-select red-dice">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4" selected>4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-                <select id="blueThreshold" class="threshold-select blue-dice">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4" selected>4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-                <select id="yellowThreshold" class="threshold-select yellow-dice">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4" selected>4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                </select>
-            </div>
+            <span id="greenThreshold" class="threshold-die green-text">4</span>
+            <span id="redThreshold" class="threshold-die red-text">4</span>
+            <span id="blueThreshold" class="threshold-die blue-text">4</span>
+            <span id="yellowThreshold" class="threshold-die yellow-text">4</span>
         </div>
+
         <div id="results"></div>
+
         <button id="rollButton">Roll</button>
     </div>
     <script src="./assets/js/script.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./assets/js/sw.js');
+            navigator.serviceWorker.register('./assets/js/sw.js')
+                .then((registration) => {
+                    console.log('Service Worker registered with scope:', registration.scope);
+                })
+                .catch((error) => {
+                    console.error('Service Worker registration failed:', error);
+                });
         }
-
-        caches.open('ff5dice-v1').then((cache) => {
-            return cache.addAll([
-                './',
-                './index.html',
-                './assets/css/styles.css',
-                './assets/js/script.js'
-            ]);
-        });
     </script>
 </body>
 
