@@ -83,28 +83,73 @@
         </div>
 
         <div class="threshold-section">
-            <span id="greenThreshold" class="threshold-die green-text">4</span>
-            <span id="redThreshold" class="threshold-die red-text">4</span>
-            <span id="blueThreshold" class="threshold-die blue-text">4</span>
-            <span id="yellowThreshold" class="threshold-die yellow-text">4</span>
+            <select id="greenThreshold" class="green-text">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <select id="redThreshold" class="red-text">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <select id="blueThreshold" class="blue-text">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
+            <select id="yellowThreshold" class="yellow-text">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4" selected>4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+            </select>
         </div>
 
-        <div id="results"></div>
+        <div id="results">
+            <div id="greenResults" class="result-group">
+                <span class="green-text-label">GREEN:</span>
+                <span class="results"></span>
+            </div>
+            <div id="redResults" class="result-group">
+                <span class="red-text-label">RED:</span>
+                <span class="results"></span>
+            </div>
+            <div id="blueResults" class="result-group">
+                <span class="blue-text-label">BLUE:</span>
+                <span class="results"></span>
+            </div>
+            <div id="yellowResults" class="result-group">
+                <span class="yellow-text-label">YELLOW:</span>
+                <span class="results"></span>
+            </div>
+        </div>
 
         <button id="rollButton">Roll</button>
-    </div>
-    <script src="./assets/js/script.js"></script>
-    <script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('./assets/js/sw.js')
-                .then((registration) => {
-                    console.log('Service Worker registered with scope:', registration.scope);
-                })
-                .catch((error) => {
-                    console.error('Service Worker registration failed:', error);
-                });
-        }
-    </script>
+        również<div>
+            <script src="./assets/js/script.js"></script>
+            <script>
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.register('./assets/js/sw.js')
+                        .then((registration) => {
+                            console.log('Service Worker registered with scope:', registration.scope);
+                        })
+                        .catch((error) => {
+                            console.error('Service Worker registration failed:', error);
+                        });
+                }
+            </script>
 </body>
 
 </html>

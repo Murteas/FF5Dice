@@ -53,8 +53,34 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
         handleButtonClick(event);
       });
+
+    // Add event listeners for threshold dropdowns
+    ["green", "red", "blue", "yellow"].forEach((color) => {
+      document
+        .getElementById(`${color}Threshold`)
+        .addEventListener("change", (event) => {
+          thresholds[color] = parseInt(event.target.value);
+          const characterName =
+            document.getElementById("characterSelect").value;
+          if (characterName && characterName !== "new") {
+            characterThresholds[characterName] = { ...thresholds };
+            localStorage.setItem(
+              "characterThresholds",
+              JSON.stringify(characterThresholds)
+            );
+            let characters =
+              JSON.parse(localStorage.getItem("characters")) || [];
+            characters = characters.map((char) =>
+              char.name === characterName
+                ? { name: characterName, thresholds: { ...thresholds } }
+                : char
+            );
+            localStorage.setItem("characters", JSON.stringify(characters));
+          }
+        });
+    });
   } catch (error) {
-    console.error("Error setting up dice section event listeners:", error);
+    console.error("Error setting up event listeners:", error);
   }
 
   document.getElementById("rollButton").addEventListener("click", rollDice);
@@ -91,11 +117,17 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function rollDice() {
-    const results = [];
+    const results = {
+      green: [],
+      red: [],
+      blue: [],
+      yellow: [],
+    };
+
     for (const [color, count] of Object.entries(diceCounts)) {
       for (let i = 0; i < count; i++) {
         const roll = Math.ceil(Math.random() * 6);
-        results.push({ color, roll });
+        results[color].push({ roll, success: roll >= thresholds[color] });
       }
     }
 
@@ -103,14 +135,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function displayResults(results) {
-    const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = "";
+    ["green", "red", "blue", "yellow"].forEach((color) => {
+      const resultContainer = document.querySelector(
+        `#${color}Results .results`
+      );
+      resultContainer.innerHTML = "";
 
-    results.forEach(({ color, roll }) => {
-      const dieSpan = document.createElement("span");
-      dieSpan.textContent = roll;
-      dieSpan.classList.add("die", `${color}-text`);
-      resultsDiv.appendChild(dieSpan);
+      results[color].forEach(({ roll, success }) => {
+        const dieSpan = document.createElement("span");
+        dieSpan.textContent = roll;
+        dieSpan.classList.add("die", `${color}-text`);
+        if (success) {
+          dieSpan.classList.add("success");
+        }
+        resultContainer.appendChild(dieSpan);
+      });
     });
   }
 });
@@ -171,10 +210,18 @@ function loadSelectedCharacter() {
 }
 
 function updateThresholdDisplay(thresholds) {
-  document.getElementById("greenThreshold").textContent = thresholds.green;
-  document.getElementById("redThreshold").textContent = thresholds.red;
-  document.getElementById("blueThreshold").textContent = thresholds.blue;
-  document.getElementById("yellowThreshold").textContent = thresholds.yellow;
+  document.getElementById("greenThreshold").value = thresholds.green;
+  document.getElementById("redThreshold").value = thresholds.red;
+  document.getElementById("blueThreshold").value = thresholds.blue;
+  document.getElementById("yellowThreshold").value = thresholds.yellow;
+
+  // Update the global thresholds object
+  Object.assign(thresholds, {
+    green: parseInt(document.getElementById("greenThreshold").value),
+    red: parseInt(document.getElementById("redThreshold").value),
+    blue: parseInt(document.getElementById("blueThreshold").value),
+    yellow: parseInt(document.getElementById("yellowThreshold").value),
+  });
 }
 
 function saveThresholds() {
@@ -293,14 +340,22 @@ function loadThresholds() {
 }
 
 function setDefaultThresholds() {
-  document.getElementById("greenThreshold").textContent = "4";
-  document.getElementById("redThreshold").textContent = "4";
-  document.getElementById("blueThreshold").textContent = "4";
-  document.getElementById("yellowThreshold").textContent = "4";
+  document.getElementById("greenThreshold").value = "4";
+  document.getElementById("redThreshold").value = "4";
+  document.getElementById("blueThreshold").value = "4";
+  document.getElementById("yellowThreshold").value = "4";
   document.getElementById("greenThresholdInput").value = "4";
   document.getElementById("redThresholdInput").value = "4";
   document.getElementById("blueThresholdInput").value = "4";
   document.getElementById("yellowThresholdInput").value = "4";
+
+  // Update the global thresholds object
+  Object.assign(thresholds, {
+    green: 4,
+    red: 4,
+    blue: 4,
+    yellow: 4,
+  });
 }
 
 function resetDiceInputs() {
