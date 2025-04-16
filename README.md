@@ -4,18 +4,18 @@
 The Freedom Five Dice Roller is a simple and user-friendly web application designed for iPhone users. It allows players to easily manage and roll dice for the Freedom Five tabletop game. The application features a clean interface and is optimized for mobile devices.
 
 ## Project Structure
-```
 FF5Dice
-├── assets
-│   ├── css
+├── assets                 # Static resources for the app
+│   ├── css               # Stylesheets
 │   │   └── styles.css
-│   ├── js
-│   │   ├── script.js
-│   │   └── sw.js
-│   └── manifest.json
-├── index.html
-└── README.md
-```
+│   └── js                # JavaScript files
+│   │   ├── script.js     # Core app logic (dice rolling, character management)
+│   │   └── sw.js         # Service worker for offline PWA support
+│   ├── manifest.json     # PWA manifest for metadata and configuration
+│   └── icon.png          # App icon for PWA (used in manifest.json)
+├── index.html            # Main HTML file, entry point of the app
+├── LICENSE               # MIT License file
+└── README.md             # Project documentation
 
 ## Files Description
 - **assets/css/styles.css**: Contains styles for the application, focusing on a clean and user-friendly interface suitable for mobile devices.
