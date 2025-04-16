@@ -28,18 +28,30 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById(`${color}Count`).textContent = diceCounts[color];
     }
 
-    document.querySelector('.dice-section').addEventListener('click', (event) => {
-        const button = event.target;
-        const color = button.dataset.color;
+   document
+     .querySelector(".dice-section")
+     .addEventListener("click", (event) => {
+       const button = event.target;
+       const color = button.dataset.color;
 
-        if (button.classList.contains('increment')) {
-            diceCounts[color]++;
-            updateDiceCount(color);
-        } else if (button.classList.contains('decrement')) {
-            diceCounts[color] = Math.max(0, diceCounts[color] - 1);
-            updateDiceCount(color);
-        }
-    });
+       if (!color) {
+         console.error("Button clicked with no data-color attribute:", button);
+         return;
+       }
+
+       if (button.classList.contains("increment")) {
+         if (diceCounts[color] < 9) {
+           // Max 9 dice per color
+           diceCounts[color]++;
+           updateDiceCount(color);
+         } else {
+           console.log(`Max dice reached for ${color}: 9`);
+         }
+       } else if (button.classList.contains("decrement")) {
+         diceCounts[color] = Math.max(0, diceCounts[color] - 1);
+         updateDiceCount(color);
+       }
+     });
 
     document.getElementById('rollButton').addEventListener('click', rollDice);
 
