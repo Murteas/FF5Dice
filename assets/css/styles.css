@@ -121,39 +121,63 @@ button:hover {
 
 /* Results section */
 #results {
-    margin-top: 10px;
+    margin-top: 15px;
     min-height: 50px;
+    padding: 10px;
+    background-color: #222;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
 }
 
 .result-group {
     display: flex;
     align-items: center;
-    gap: 5px;
-    margin-bottom: 5px;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #444;
+}
+
+.result-group:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
 }
 
 .result-group .results {
     display: inline-flex;
     flex-wrap: wrap;
-    gap: 5px;
+    gap: 8px;
 }
 
-/* Roll button */
-#rollButton {
+/* Roll and Clear buttons */
+#rollButton,
+#clearButton {
     display: block;
     width: 100%;
     padding: 15px;
     font-size: 1.5rem;
-    background-color: #2ecc71;
-    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
 }
 
+#rollButton {
+    background-color: #2ecc71;
+    color: #fff;
+}
+
 #rollButton:hover {
     background-color: #27ae60;
+}
+
+#clearButton {
+    background-color: #e74c3c;
+    color: #fff;
+}
+
+#clearButton:hover {
+    background-color: #c0392b;
 }
 
 /* Color classes for backgrounds */
@@ -184,8 +208,11 @@ button:hover {
     font-weight: bold;
     color: #fff;
     border: 2px solid #fff;
-    border-radius: 5px;
+    border-radius: 8px;
     margin: 0;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s ease;
 }
 
 .die.success {
@@ -194,7 +221,25 @@ button:hover {
     line-height: 45px;
     font-size: 1.6rem;
     border: 4px solid #00ff00;
-    /* Thick lime green border for success */
+}
+
+/* Animation for rolling dice */
+.die.roll {
+    animation: rollDice 0.5s ease-in-out;
+}
+
+@keyframes rollDice {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    50% {
+        transform: rotate(180deg) scale(1.1);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1);
+    }
 }
 
 /* Labels for dice controls and results */
@@ -253,7 +298,8 @@ button:hover {
         padding: 3px;
     }
 
-    #rollButton {
+    #rollButton,
+    #clearButton {
         font-size: 1.2rem;
         padding: 12px;
     }

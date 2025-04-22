@@ -12,6 +12,13 @@ const diceCounts = {
   yellow: 0,
 };
 
+let currentResults = {
+  green: [],
+  red: [],
+  blue: [],
+  yellow: [],
+};
+
 function loadCharacters() {
   const characters = JSON.parse(localStorage.getItem("characters")) || [];
   const select = document.getElementById("characterSelect");
@@ -79,11 +86,47 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         });
     });
+
+    // Add event listener for re-rolling individual dice
+    document.getElementById("results").addEventListener("click", (event) => {
+      const die = event.target;
+      if (die.classList.contains("die")) {
+        const color = die.classList.contains("green-text")
+          ? "green"
+          : die.classList.contains("red-text")
+          ? "red"
+          : die.classList.contains("blue-text")
+          ? "blue"
+          : "yellow";
+        const index = Array.from(die.parentElement.children).indexOf(die);
+        reRollDie(color, index);
+      }
+    });
+
+    // Add touch support for re-rolling
+    document.getElementById("results").addEventListener("touchend", (event) => {
+      event.preventDefault();
+      const die = event.target;
+      if (die.classList.contains("die")) {
+        const color = die.classList.contains("green-text")
+          ? "green"
+          : die.classList.contains("red-text")
+          ? "red"
+          : die.classList.contains("blue-text")
+          ? "blue"
+          : "yellow";
+        const index = Array.from(die.parentElement.children).indexOf(die);
+        reRollDie(color, index);
+      }
+    });
   } catch (error) {
     console.error("Error setting up event listeners:", error);
   }
 
   document.getElementById("rollButton").addEventListener("click", rollDice);
+  document
+    .getElementById("clearButton")
+    .addEventListener("click", clearResults);
 
   function handleButtonClick(event) {
     const button = event.target;
@@ -117,7 +160,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function rollDice() {
-    const results = {
+    currentResults = {
       green: [],
       red: [],
       blue: [],
@@ -127,11 +170,35 @@ document.addEventListener("DOMContentLoaded", () => {
     for (const [color, count] of Object.entries(diceCounts)) {
       for (let i = 0; i < count; i++) {
         const roll = Math.ceil(Math.random() * 6);
-        results[color].push({ roll, success: roll >= thresholds[color] });
+        currentResults[color].push({
+          roll,
+          success: roll >= thresholds[color],
+        });
       }
     }
 
-    displayResults(results);
+    displayResults(currentResults);
+  }
+
+  function reRollDie(color, index) {
+    if (currentResults[color][index]) {
+      const roll = Math.ceil(Math.random() * 6);
+      currentResults[color][index] = {
+        roll,
+        success: roll >= thresholds[color],
+      };
+      displayResults(currentResults);
+    }
+  }
+
+  function clearResults() {
+    currentResults = {
+      green: [],
+      red: [],
+      blue: [],
+      yellow: [],
+    };
+    displayResults(currentResults);
   }
 
   function displayResults(results) {
@@ -141,13 +208,21 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       resultContainer.innerHTML = "";
 
-      results[color].forEach(({ roll, success }) => {
+      // Sort results: successes first
+      const sortedResults = results[color].slice().sort((a, b) => {
+        if (a.success && !b.success) return -1;
+        if (!a.success && b.success) return 1;
+        return b.roll - a.roll; // If both success or both fail, sort by roll value descending
+      });
+
+      sortedResults.forEach(({ roll, success }) => {
         const dieSpan = document.createElement("span");
         dieSpan.textContent = roll;
         dieSpan.classList.add("die", `${color}-text`);
         if (success) {
           dieSpan.classList.add("success");
         }
+        dieSpan.classList.add("roll"); // Trigger roll animation
         resultContainer.appendChild(dieSpan);
       });
     });
@@ -207,7 +282,6 @@ function updateThresholdDisplay(loadedThresholds) {
   document.getElementById("blueThreshold").value = loadedThresholds.blue;
   document.getElementById("yellowThreshold").value = loadedThresholds.yellow;
 
-  // Update the global thresholds object
   thresholds.green = parseInt(document.getElementById("greenThreshold").value);
   thresholds.red = parseInt(document.getElementById("redThreshold").value);
   thresholds.blue = parseInt(document.getElementById("blueThreshold").value);
@@ -237,7 +311,6 @@ function saveThresholds() {
       localStorage.setItem("characters", JSON.stringify(characters));
     }
 
-    // Update global thresholds after saving
     thresholds.green = newThresholds.green;
     thresholds.red = newThresholds.red;
     thresholds.blue = newThresholds.blue;
@@ -275,7 +348,6 @@ function updateThresholds() {
     );
     localStorage.setItem("characters", JSON.stringify(characters));
 
-    // Update global thresholds after updating
     thresholds.green = updatedThresholds.green;
     thresholds.red = updatedThresholds.red;
     thresholds.blue = updatedThresholds.blue;
@@ -349,7 +421,6 @@ function setDefaultThresholds() {
   document.getElementById("blueThreshold").value = "4";
   document.getElementById("yellowThreshold").value = "4";
 
-  // Update the global thresholds object
   thresholds.green = 4;
   thresholds.red = 4;
   thresholds.blue = 4;
