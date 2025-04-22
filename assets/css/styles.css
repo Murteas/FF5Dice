@@ -157,19 +157,30 @@ button:hover {
 }
 
 /* Color classes for backgrounds */
-.green-text { background-color: #2ecc71; }
-.red-text { background-color: #e74c3c; }
-.blue-text { background-color: #3498db; }
-.yellow-text { background-color: #f1c40f; }
+.green-text {
+    background-color: #2ecc71;
+}
+
+.red-text {
+    background-color: #e74c3c;
+}
+
+.blue-text {
+    background-color: #3498db;
+}
+
+.yellow-text {
+    background-color: #f1c40f;
+}
 
 /* Dice visuals as colored boxes */
 .die {
     display: inline-block;
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: #fff;
     border: 2px solid #fff;
@@ -178,14 +189,30 @@ button:hover {
 }
 
 .die.success {
-    box-shadow: 0 0 10px 3px #ffd700;
+    width: 45px;
+    height: 45px;
+    line-height: 45px;
+    font-size: 1.6rem;
+    box-shadow: 0 0 15px 5px #ffd700, 0 0 25px 10px rgba(255, 215, 0, 0.5);
+    /* Enhanced glow */
 }
 
 /* Labels for dice controls and results */
-.green-text-label { color: #2ecc71; }
-.red-text-label { color: #e74c3c; }
-.blue-text-label { color: #3498db; }
-.yellow-text-label { color: #f1c40f; }
+.green-text-label {
+    color: #2ecc71;
+}
+
+.red-text-label {
+    color: #e74c3c;
+}
+
+.blue-text-label {
+    color: #3498db;
+}
+
+.yellow-text-label {
+    color: #f1c40f;
+}
 
 /* Mobile adjustments */
 @media (max-width: 480px) {
@@ -232,9 +259,16 @@ button:hover {
     }
 
     .die {
-        width: 35px;
-        height: 35px;
-        line-height: 35px;
-        font-size: 1.2rem;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 1.1rem;
+    }
+
+    .die.success {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.4rem;
     }
 }
