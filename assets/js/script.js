@@ -169,7 +169,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (const [color, count] of Object.entries(diceCounts)) {
       for (let i = 0; i < count; i++) {
-        const roll = Math.ceil(Math.random() * 6);
+        const roll = getRandomDieRoll();
         currentResults[color].push({
           roll,
           success: roll >= thresholds[color],
@@ -182,12 +182,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function reRollDie(color, index) {
     if (currentResults[color][index]) {
-      const roll = Math.ceil(Math.random() * 6);
+      const roll = getRandomDieRoll();
       currentResults[color][index] = {
         roll,
         success: roll >= thresholds[color],
       };
       displayResults(currentResults);
+    } else {
+      console.error(`No die found at index ${index} for color ${color}`);
     }
   }
 
@@ -436,6 +438,12 @@ function resetDiceInputs() {
   updateDiceCount("red");
   updateDiceCount("blue");
   updateDiceCount("yellow");
+}
+
+function getRandomDieRoll() {
+  const array = new Uint32Array(1);
+  window.crypto.getRandomValues(array);
+  return (array[0] % 6) + 1; // Generate a number between 1 and 6
 }
 
 window.onload = function () {
