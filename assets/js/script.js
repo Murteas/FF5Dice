@@ -98,8 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
           : die.classList.contains("blue-text")
           ? "blue"
           : "yellow";
-        const index = Array.from(die.parentElement.children).indexOf(die);
-        reRollDie(color, index);
+        const index = getDieIndex(die);
+        reRollDie(color, index); // Re-roll only the clicked die
       }
     });
 
@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
           : die.classList.contains("blue-text")
           ? "blue"
           : "yellow";
-        const index = Array.from(die.parentElement.children).indexOf(die);
+        const index = getDieIndex(die);
         reRollDie(color, index);
       }
     });
@@ -181,12 +181,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function reRollDie(color, index) {
-    if (currentResults[color][index]) {
+    if (currentResults[color] && currentResults[color][index]) {
+      console.log("Before re-roll:", JSON.stringify(currentResults[color]));
+      console.log(`Re-rolling die at index ${index} for color ${color}`);
+
       const roll = getRandomDieRoll();
+      // Update only the specific die at the given index
       currentResults[color][index] = {
         roll,
         success: roll >= thresholds[color],
+        animate: true,
       };
+
+      console.log("After re-roll:", JSON.stringify(currentResults[color]));
       displayResults(currentResults);
     } else {
       console.error(`No die found at index ${index} for color ${color}`);
@@ -217,14 +224,17 @@ document.addEventListener("DOMContentLoaded", () => {
         return b.roll - a.roll; // If both success or both fail, sort by roll value descending
       });
 
-      sortedResults.forEach(({ roll, success }) => {
+      sortedResults.forEach(({ roll, success }, index) => {
         const dieSpan = document.createElement("span");
         dieSpan.textContent = roll;
         dieSpan.classList.add("die", `${color}-text`);
         if (success) {
           dieSpan.classList.add("success");
         }
-        dieSpan.classList.add("roll"); // Trigger roll animation
+        if (results[color][index].animate) {
+          dieSpan.classList.add("roll"); // Trigger roll animation only for re-rolled dice
+          delete results[color][index].animate; // Remove the animate flag after applying
+        }
         resultContainer.appendChild(dieSpan);
       });
     });
@@ -444,6 +454,14 @@ function getRandomDieRoll() {
   const array = new Uint32Array(1);
   window.crypto.getRandomValues(array);
   return (array[0] % 6) + 1; // Generate a number between 1 and 6
+}
+
+function getDieIndex(die) {
+  const dice = Array.from(die.parentElement.querySelectorAll('.die'));
+  console.log("Dice elements:", dice.map(d => d.textContent));
+  const index = dice.indexOf(die);
+  console.log(`Clicked die text: ${die.textContent}, index: ${index}`);
+  return index;
 }
 
 window.onload = function () {
