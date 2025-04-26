@@ -182,7 +182,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function reRollDie(color, index) {
     if (currentResults[color] && currentResults[color][index]) {
-      console.log("Before re-roll:", JSON.stringify(currentResults[color]));
       console.log(`Re-rolling die at index ${index} for color ${color}`);
 
       const roll = getRandomDieRoll();
@@ -193,7 +192,6 @@ document.addEventListener("DOMContentLoaded", () => {
         animate: true,
       };
 
-      console.log("After re-roll:", JSON.stringify(currentResults[color]));
       displayResults(currentResults);
     } else {
       console.error(`No die found at index ${index} for color ${color}`);
@@ -217,14 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
       resultContainer.innerHTML = "";
 
-      // Sort results: successes first
-      const sortedResults = results[color].slice().sort((a, b) => {
-        if (a.success && !b.success) return -1;
-        if (!a.success && b.success) return 1;
-        return b.roll - a.roll; // If both success or both fail, sort by roll value descending
-      });
-
-      sortedResults.forEach(({ roll, success }, index) => {
+      results[color].forEach(({ roll, success }, index) => {
         const dieSpan = document.createElement("span");
         dieSpan.textContent = roll;
         dieSpan.classList.add("die", `${color}-text`);
@@ -232,8 +223,8 @@ document.addEventListener("DOMContentLoaded", () => {
           dieSpan.classList.add("success");
         }
         if (results[color][index].animate) {
-          dieSpan.classList.add("roll"); // Trigger roll animation only for re-rolled dice
-          delete results[color][index].animate; // Remove the animate flag after applying
+          dieSpan.classList.add("roll");
+          delete results[color][index].animate;
         }
         resultContainer.appendChild(dieSpan);
       });
@@ -456,11 +447,10 @@ function getRandomDieRoll() {
   return (array[0] % 6) + 1; // Generate a number between 1 and 6
 }
 
+// Removed verbose debugging logs and retained critical logs
 function getDieIndex(die) {
   const dice = Array.from(die.parentElement.querySelectorAll('.die'));
-  console.log("Dice elements:", dice.map(d => d.textContent));
   const index = dice.indexOf(die);
-  console.log(`Clicked die text: ${die.textContent}, index: ${index}`);
   return index;
 }
 
